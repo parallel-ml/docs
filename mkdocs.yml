@@ -3,4 +3,5 @@ nav:
     - Home: index.md
     - Getting Started:
         - Connecting to Raspberry Pi: getting-started/setting-up-pi.md
+    - Using the PiCamera: picamera.md
 theme: readthedocs
