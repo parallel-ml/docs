@@ -22,7 +22,7 @@ Finally, test your camera with:
 
 `raspistill -o image.jpg`
 
-(it takes a picture and save it as `image.jpg`)
+(it takes a picture and saves it as `image.jpg`)
 
 After that, a new jpeg file should appear in your directory.
 
