@@ -5,25 +5,25 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="None">
   
-  <link rel="shortcut icon" href="img/favicon.ico">
-  <title>Home - distributed cloud ML</title>
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Using the PiCamera - distributed cloud ML</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
-  <link rel="stylesheet" href="css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Home";
-    var mkdocs_page_input_path = "index.md";
+    var mkdocs_page_name = "Using the PiCamera";
+    var mkdocs_page_input_path = "picamera.md";
     var mkdocs_page_url = null;
   </script>
   
-  <script src="js/jquery-2.1.1.min.js" defer></script>
-  <script src="js/modernizr-2.8.3.min.js" defer></script>
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
   
@@ -36,9 +36,9 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
       <div class="wy-side-nav-search">
-        <a href="." class="icon icon-home"> distributed cloud ML</a>
+        <a href=".." class="icon icon-home"> distributed cloud ML</a>
         <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
@@ -48,15 +48,9 @@
 	<ul class="current">
 	  
           
-            <li class="toctree-l1 current">
+            <li class="toctree-l1">
 		
-    <a class="current" href=".">Home</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l2"><a href="#welcome-to-distributed-cloud-ml">Welcome to distributed cloud ML</a></li>
-    
-
-    </ul>
+    <a class="" href="..">Home</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -65,14 +59,23 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="getting-started/setting-up-pi/">Connecting to Raspberry Pi</a>
+    <a class="" href="../getting-started/setting-up-pi/">Connecting to Raspberry Pi</a>
                 </li>
     </ul>
 	    </li>
           
-            <li class="toctree-l1">
+            <li class="toctree-l1 current">
 		
-    <a class="" href="picamera/">Using the PiCamera</a>
+    <a class="current" href="./">Using the PiCamera</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#using-the-picamera">Using the PiCamera</a></li>
+    
+
+    <li class="toctree-l2"><a href="#visualizing-pictures-via-ssh">Visualizing pictures via ssh</a></li>
+    
+
+    </ul>
 	    </li>
           
         </ul>
@@ -85,7 +88,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href=".">distributed cloud ML</a>
+        <a href="..">distributed cloud ML</a>
       </nav>
 
       
@@ -93,11 +96,11 @@
         <div class="rst-content">
           <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".">Docs</a> &raquo;</li>
+    <li><a href="..">Docs</a> &raquo;</li>
     
       
     
-    <li>Home</li>
+    <li>Using the PiCamera</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -107,7 +110,28 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="welcome-to-distributed-cloud-ml">Welcome to distributed cloud ML</h1>
+                <h2 id="using-the-picamera">Using the PiCamera</h2>
+<p>For using the PiCamera on a Raspberry Pi, you should, after connecting the camera to the Raspberry, update and upgrade your pi with:</p>
+<p><code>sudo apt-get update</code></p>
+<p>and</p>
+<p><code>sudo apt-get upgrade</code></p>
+<p>That may take some short time.</p>
+<p>Then, you have to enable the camera in the raspberry settings by:
+'sudo raspi-config'</p>
+<p>Reboot the pi after that:</p>
+<p><code>sudo reboot</code></p>
+<p>Give some time for the pi to reboot and log again into it.</p>
+<p>Finally, test your camera with:</p>
+<p><code>raspistill -o image.jpg</code></p>
+<p>(it takes a picture and saves it as <code>image.jpg</code>)</p>
+<p>After that, a new jpeg file should appear in your directory.</p>
+<h2 id="visualizing-pictures-via-ssh">Visualizing pictures via ssh</h2>
+<p>If you want to display the images of image files in your computer, make sure to connect to the pi with:</p>
+<p><code>ssh -X pi@&lt;pi_adress&gt;</code>(focus on the <code>-X</code>)</p>
+<p>Install <code>feh</code> if you the don't have it yet:</p>
+<p><code>sudo apt-get install feh</code></p>
+<p>And finally do:</p>
+<p><code>feh &lt;image_file&gt;.jpg</code></p>
               
             </div>
           </div>
@@ -115,8 +139,8 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="getting-started/setting-up-pi/" class="btn btn-neutral float-right" title="Connecting to Raspberry Pi">Next <span class="icon icon-circle-arrow-right"></span></a>
       
+        <a href="../getting-started/setting-up-pi/" class="btn btn-neutral" title="Connecting to Raspberry Pi"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -142,19 +166,14 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
+        <span><a href="../getting-started/setting-up-pi/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
-        <span style="margin-left: 15px"><a href="getting-started/setting-up-pi/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
-    <script>var base_url = '.';</script>
-    <script src="js/theme.js" defer></script>
-      <script src="search/main.js" defer></script>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
 
 </body>
 </html>
-
-<!--
-MkDocs version : 1.0.4
-Build Date UTC : 2019-02-16 22:39:30
--->
