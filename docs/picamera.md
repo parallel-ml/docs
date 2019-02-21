@@ -26,6 +26,8 @@ Finally, test your camera with:
 
 After that, a new jpeg file should appear in your directory.
 
+General Helpfull information about PiCamera (https://picamera.readthedocs.io/en/release-1.12)
+
 ## Visualizing pictures via ssh
 If you want to display the images of image files in your computer, make sure to connect to the pi with:
 
