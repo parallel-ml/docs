@@ -9,4 +9,3 @@ mkdocs gh-deploy
 ```
 The `mkdocs` library will take care rest of the work and publish the docs under **Github Pages**. 
 
-You can work it directly from web site. 
