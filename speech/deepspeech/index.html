@@ -7,23 +7,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
-  <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Utilizing Deepspeech on Raspberry pi - distributed cloud ML</title>
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Deepspeech - distributed cloud ML</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
-  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Utilizing Deepspeech on Raspberry pi";
-    var mkdocs_page_input_path = "deepspeech.md";
+    var mkdocs_page_name = "Deepspeech";
+    var mkdocs_page_input_path = "speech/deepspeech.md";
     var mkdocs_page_url = null;
   </script>
   
-  <script src="../js/jquery-2.1.1.min.js" defer></script>
-  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
   
@@ -36,9 +36,9 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
       <div class="wy-side-nav-search">
-        <a href=".." class="icon icon-home"> distributed cloud ML</a>
+        <a href="../.." class="icon icon-home"> distributed cloud ML</a>
         <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
@@ -50,7 +50,7 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href="..">Home</a>
+    <a class="" href="../..">Home</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -59,14 +59,37 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../getting-started/setting-up-pi/">Connecting to Raspberry Pi</a>
+    <a class="" href="../../getting-started/setting-up-pi/">Connecting to Raspberry Pi</a>
                 </li>
     </ul>
 	    </li>
           
             <li class="toctree-l1">
 		
-    <a class="" href="../picamera/">Using the PiCamera</a>
+    <a class="" href="../../picamera/">Using the PiCamera</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Speech Recognition</span>
+    <ul class="subnav">
+                <li class=" current">
+                    
+    <a class="current" href="./">Deepspeech</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#utilizing-deepspeech-on-raspberry-pi">Utilizing Deepspeech on Raspberry pi</a></li>
+    
+
+    <li class="toctree-l3"><a href="#run-deepspeech-with-training-model-use-python-deepspeech-package">Run deepspeech with training model: (use python deepspeech package)</a></li>
+    
+
+    <li class="toctree-l3"><a href="#next-we-tried-to-make-our-own-model-to-see-if-we-can-reduce-the-model-size">Next we tried to make our own model to see if we can reduce the model size:</a></li>
+    
+
+    </ul>
+                </li>
+    </ul>
 	    </li>
           
         </ul>
@@ -79,7 +102,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="..">distributed cloud ML</a>
+        <a href="../..">distributed cloud ML</a>
       </nav>
 
       
@@ -87,11 +110,15 @@
         <div class="rst-content">
           <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="..">Docs</a> &raquo;</li>
+    <li><a href="../..">Docs</a> &raquo;</li>
     
       
+        
+          <li>Speech Recognition &raquo;</li>
+        
+      
     
-    <li>Utilizing Deepspeech on Raspberry pi</li>
+    <li>Deepspeech</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -212,6 +239,13 @@ test.csv
           </div>
           <footer>
   
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../../picamera/" class="btn btn-neutral" title="Using the PiCamera"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
 
   <hr/>
 
@@ -234,12 +268,14 @@ test.csv
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
+        <span><a href="../../picamera/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
       
     </span>
 </div>
-    <script>var base_url = '..';</script>
-    <script src="../js/theme.js" defer></script>
-      <script src="../search/main.js" defer></script>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
 
 </body>
 </html>
