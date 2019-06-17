@@ -68,11 +68,19 @@ virtualenv -p python3 $HOME/tmp/deepspeech-venv/
 - Git clone DeepSpeech from the github 
  `git clone https://github.com/mozilla/DeepSpeech.git`
 - Install required dependencies from requirements.txt file, Run these commands
-` cd deepspeech `
-`pip3 install -r requirements.txt`
+
+``` 
+cd deepspeech 
+pip3 install -r requirements.txt
+```
+
 - If you are using gpu, use tensorflow gpu:
-`pip3 uninstall tensorflow`
-`pip3 install 'tensorflow-gpu==1.13.1' `
+
+```
+pip3 uninstall tensorflow
+pip3 install 'tensorflow-gpu==1.13.1'
+```
+
 **Download voice training data from common voice: https://voice.mozilla.org/en/datasets;**
 - Download the Tatoeba dataset
 - Go to the link, scroll down to the Tatoeba dataset, press more, and press download
@@ -82,15 +90,16 @@ The data is needs to be converted wav files.
 The data needs to be split into train, test, and dev data
 3 csv files need to be created (for each split) which stores the wav_filename, wav_filesize, and transcript
 - Use  [import.py](https://drive.google.com/file/d/1EUJ0jUKSdEiwxRm8-2jaLaO2mCK_Bg0G/view?usp=sharing) and [untilA.csv] to convert MP3 to WAV file while creating train.csv, dev.csv, and test.csv
-to do and [untilA.csv] 
 - Put ‘import.py’ and ‘untilA.csv’ in same folder
 - Install pydub (pydub will help convert MP3 to WAV)
+
 `pip3 install pydub`
 - (Optional) `apt-get install ffmpeg`
 - Edit import.py before you start running the code
 - Change the fullpath variable to the directory that has the audio files
 - For example, fullpath = ‘/home/user/Download/tatoeba_audio_eng/tatoeba_audio_eng/audio’
 - Now, run import.py by
+
 `python3 import.py`
 - As a result, you will have the following files:
 new_names.csv
@@ -99,4 +108,5 @@ dev.csv
 test.csv
 **‘new_names.csv’ is just a file that contains all wav file directories**
 - Using ./Deepspeech.py to create your own model
+
 `./DeepSpeech.py --train_files /locate/directory/here/train.csv --dev_files /locate/directory/here/dev.csv --test_files /locate/directory/here/test.csv`
