@@ -56,6 +56,13 @@ virtualenv -p python3 $HOME/tmp/deepspeech-venv/
 
 
 # Next we tried to make our own model to see if we can reduce the model size:
+
+1.) When running on a raspberry pi, go to the "connecting to the raspberry pi" docs to connect
+
+   - You would have to scp the newly trained model to the raspberry pi assuming trained model is small enough
+    
+2.) If you want to use a GPU, follow directions from the gpu slack channel for conection
+
 - Using steps from https://github.com/mozilla/DeepSpeech#training-your-own-model:
 - Make or activate your virtualenv for deepspeech
 - Git clone DeepSpeech from the github 
@@ -66,20 +73,25 @@ virtualenv -p python3 $HOME/tmp/deepspeech-venv/
 - If you are using gpu, use tensorflow gpu:
 `pip3 uninstall tensorflow`
 `pip3 install 'tensorflow-gpu==1.13.1' `
-- Download voice training data from common voice: https://voice.mozilla.org/en/datasets; _ - Download the Tatoeba dataset
+**Download voice training data from common voice: https://voice.mozilla.org/en/datasets;**
+- Download the Tatoeba dataset
 - Go to the link, scroll down to the Tatoeba dataset, press more, and press download
 - Move it to your preferrred directory
 - Unzip the file 
-- Convert MP3 to WAV file while creating train.csv, dev.csv, and test.csv
+The data is needs to be converted wav files.
+The data needs to be split into train, test, and dev data
+3 csv files need to be created (for each split) which stores the wav_filename, wav_filesize, and transcript
+- Use  [import.py](https://drive.google.com/file/d/1EUJ0jUKSdEiwxRm8-2jaLaO2mCK_Bg0G/view?usp=sharing) and [untilA.csv] to convert MP3 to WAV file while creating train.csv, dev.csv, and test.csv
+to do and [untilA.csv] 
 - Put ‘import.py’ and ‘untilA.csv’ in same folder
 - Install pydub (pydub will help convert MP3 to WAV)
-- pip3 install pydub
-- (Optional) apt-get install ffmpeg
+`pip3 install pydub`
+- (Optional) `apt-get install ffmpeg`
 - Edit import.py before you start running the code
 - Change the fullpath variable to the directory that has the audio files
 - For example, fullpath = ‘/home/user/Download/tatoeba_audio_eng/tatoeba_audio_eng/audio’
 - Now, run import.py by
-- python3 import.py
+`python3 import.py`
 - As a result, you will have the following files:
 new_names.csv
 train.csv
