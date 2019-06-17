@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Utilizing Deepspeech on Raspberry pi - distributed cloud ML</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Utilizing Deepspeech on Raspberry pi";
+    var mkdocs_page_input_path = "deepspeech.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> distributed cloud ML</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Getting Started</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../getting-started/setting-up-pi/">Connecting to Raspberry Pi</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../picamera/">Using the PiCamera</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">distributed cloud ML</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Utilizing Deepspeech on Raspberry pi</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="utilizing-deepspeech-on-raspberry-pi">Utilizing Deepspeech on Raspberry pi</h1>
+<p><strong>Requirements: have python3 installed with pip3</strong></p>
+<p>https://github.com/mozilla/DeepSpeech#using-the-python-package</p>
+<h1 id="run-deepspeech-with-training-model-use-python-deepspeech-package">Run deepspeech with training model: (use python deepspeech package)</h1>
+<p><strong>WARNING: this model is really big: 1.6 GB; so you cannot do this on raspberry pi</strong></p>
+<p>Follow steps under Using Pre-trained mode on the github page (https://github.com/mozilla/DeepSpeech#using-the-python-package), using python package which are:</p>
+<p><strong>Make a virtual environment:</strong></p>
+<ul>
+<li>Pip3 install virtualenv if you don’t have virtualenv python package yet (or pip) version</li>
+</ul>
+<pre><code>virtualenv -p python3 $HOME/tmp/deepspeech-venv/
+</code></pre>
+
+<ul>
+<li>Instead of $HOME/tmp/deepspeech-venv, put the path of where you want the virtual environment to be made</li>
+<li>deepspeech-venv will be the name of the environment so change that if you want a different name</li>
+<li>Or just make a virtualenv how you normally do</li>
+</ul>
+<p><strong>Activate the virtual environment</strong></p>
+<ul>
+<li>Now the virtual environment is created with a bin folder with activate document</li>
+</ul>
+<p><code>source $HOME/tmp/deepspeech-venv/bin/activate</code></p>
+<ul>
+<li>This creates a virtual environment where you can install deepspeech related dependencies</li>
+<li>Now install deepspeech package on your local environment</li>
+</ul>
+<p><code>pip3 install deepspeech</code></p>
+<p><strong>Using this: https://github.com/mozilla/DeepSpeech#getting-the-pre-trained-model, download the latest pre-trained deepspeech model: (You can use an older one if you want to)</strong></p>
+<ul>
+<li>
+<p>Linux: run this command in the directory you want to put the file: 
+<code>wget https://github.com/mozilla/DeepSpeech/releases/download/v0.5.0/deepspeech-0.5.0-models.tar.gz</code></p>
+</li>
+<li>
+<p>Others, just enter link into web browser, this will download the file. Then manually move the file to preferred directory</p>
+</li>
+<li>
+<p>Then, unzip the file using tar command 
+<code>tar xvfz deepspeech-0.5.0-models.tar.gz</code></p>
+</li>
+<li>
+<p>This creates a folder, called deepspeech-0.5.0-models</p>
+</li>
+<li>Now download an audio file you want the model to do speech to text recognition</li>
+<li>Put this model in the preferred directory</li>
+<li>
+<p>Go to the preferred directory on the command line and run this command:
+<code>deepspeech --model models/output_graph.pbmm --alphabet models/alphabet.txt --lm models/lm.binary --trie models/trie --audio my_audio_file.wav</code></p>
+</li>
+<li>
+<p>EXCEPT: replace my_audio_file.wav with your audio file and 
+--lm and --trie tags are optional</p>
+</li>
+<li>Replace models with deepspeech-0.5.0-models or with the name of the folder created from the download</li>
+</ul>
+<h1 id="next-we-tried-to-make-our-own-model-to-see-if-we-can-reduce-the-model-size">Next we tried to make our own model to see if we can reduce the model size:</h1>
+<p>1.) When running on a raspberry pi, go to the "connecting to the raspberry pi" docs to connect</p>
+<ul>
+<li>You would have to scp the newly trained model to the raspberry pi assuming trained model is small enough</li>
+</ul>
+<p>2.) If you want to use a GPU, follow directions from the gpu slack channel for conection</p>
+<ul>
+<li>Using steps from https://github.com/mozilla/DeepSpeech#training-your-own-model:</li>
+<li>Make or activate your virtualenv for deepspeech</li>
+<li>Git clone DeepSpeech from the github 
+ <code>git clone https://github.com/mozilla/DeepSpeech.git</code></li>
+<li>Install required dependencies from requirements.txt file, Run these commands</li>
+</ul>
+<pre><code>cd deepspeech 
+pip3 install -r requirements.txt
+</code></pre>
+
+<ul>
+<li>If you are using gpu, use tensorflow gpu:</li>
+</ul>
+<pre><code>pip3 uninstall tensorflow
+pip3 install 'tensorflow-gpu==1.13.1'
+</code></pre>
+
+<p><strong>Download voice training data from common voice: https://voice.mozilla.org/en/datasets;</strong>
+- Download the Tatoeba dataset
+- Go to the link, scroll down to the Tatoeba dataset, press more, and press download
+- Move it to your preferrred directory
+- Unzip the file 
+The data is needs to be converted wav files.
+The data needs to be split into train, test, and dev data
+3 csv files need to be created (for each split) which stores the wav_filename, wav_filesize, and transcript
+- Use  <a href="https://drive.google.com/file/d/1EUJ0jUKSdEiwxRm8-2jaLaO2mCK_Bg0G/view?usp=sharing">import.py</a> and [untilA.csv] to convert MP3 to WAV file while creating train.csv, dev.csv, and test.csv
+- Put ‘import.py’ and ‘untilA.csv’ in same folder
+- Install pydub (pydub will help convert MP3 to WAV)</p>
+<p><code>pip3 install pydub</code>
+- (Optional) <code>apt-get install ffmpeg</code>
+- Edit import.py before you start running the code
+- Change the fullpath variable to the directory that has the audio files
+- For example, fullpath = ‘/home/user/Download/tatoeba_audio_eng/tatoeba_audio_eng/audio’
+- Now, run import.py by</p>
+<p><code>python3 import.py</code>
+- As a result, you will have the following files:
+new_names.csv
+train.csv
+dev.csv
+test.csv
+<strong>‘new_names.csv’ is just a file that contains all wav file directories</strong>
+- Using ./Deepspeech.py to create your own model</p>
+<p><code>./DeepSpeech.py --train_files /locate/directory/here/train.csv --dev_files /locate/directory/here/dev.csv --test_files /locate/directory/here/test.csv</code></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>
