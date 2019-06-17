@@ -4,4 +4,6 @@ nav:
     - Getting Started:
         - Connecting to Raspberry Pi: getting-started/setting-up-pi.md
     - Using the PiCamera: picamera.md
+    - Speech Recognition:
+        - Deepspeech: speech/deepspeech.md
 theme: readthedocs
