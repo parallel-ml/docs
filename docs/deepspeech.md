@@ -1,38 +1,55 @@
 # Utilizing Deepspeech on raspberry pi 
 
-*Requirements: have python3 installed with pip3, 
+**Requirements: have python3 installed with pip3**
+
 https://github.com/mozilla/DeepSpeech#using-the-python-package
 
 
 # Run deepspeech with training model: (use python deepspeech package) 
-* WARNING: this model is really big: 1.6 GB
+**WARNING: this model is really big: 1.6 GB**
+
 Follow steps under Using Pre-trained mode on the github page (https://github.com/mozilla/DeepSpeech#using-the-python-package), using python package which are:
 
-* Make a virtual environment: 
-Pip3 install virtualenv if you don’t have virtualenv python package yet (or pip) version
-`virtualenv -p python3 $HOME/tmp/deepspeech-venv/`
-Instead of $HOME/tmp/deepspeech-venv, put the path of where you want the virtual environment to be made
-deepspeech-venv will be the name of the environment so change that if you want a different name
-Or just make a virtualenv how you normally do
-* Activate the virtual environment
-Now the virtual environment is created with a bin folder with activate document
+**Make a virtual environment:**
+
+- Pip3 install virtualenv if you don’t have virtualenv python package yet (or pip) version
+
+```
+virtualenv -p python3 $HOME/tmp/deepspeech-venv/
+```
+
+- Instead of $HOME/tmp/deepspeech-venv, put the path of where you want the virtual environment to be made
+- deepspeech-venv will be the name of the environment so change that if you want a different name
+- Or just make a virtualenv how you normally do
+
+**Activate the virtual environment**
+
+_ Now the virtual environment is created with a bin folder with activate document
+
 `source $HOME/tmp/deepspeech-venv/bin/activate`
-This creates a virtual environment where you can install deepspeech related dependencies
-Now install deepspeech package on your local environment
+
+_ This creates a virtual environment where you can install deepspeech related dependencies
+_ Now install deepspeech package on your local environment
+
 `pip3 install deepspeech`
-* Using this: https://github.com/mozilla/DeepSpeech#getting-the-pre-trained-model, download the latest pre-trained deepspeech model: (You can use an older one if you want to)
-Linux: run this command in the directory you want to put the file: `wget https://github.com/mozilla/DeepSpeech/releases/download/v0.5.0/deepspeech-0.5.0-models.tar.gz`
-Others, just enter link into web browser, this will download the file. Then manually move the file to preferred directory
-Then, unzip the file using tar command 
+
+**Using this: https://github.com/mozilla/DeepSpeech#getting-the-pre-trained-model, download the latest pre-trained deepspeech model: (You can use an older one if you want to)**
+_ Linux: run this command in the directory you want to put the file: 
+`wget https://github.com/mozilla/DeepSpeech/releases/download/v0.5.0/deepspeech-0.5.0-models.tar.gz`
+
+_ Others, just enter link into web browser, this will download the file. Then manually move the file to preferred directory
+_ Then, unzip the file using tar command 
 `tar xvfz deepspeech-0.5.0-models.tar.gz `
-This creates a folder, called deepspeech-0.5.0-models
-Now download an audio file you want the model to do speech to text recognition
-Put this model in the preferred directory
-Go to the preferred directory on the command line and run this command:
+
+_ This creates a folder, called deepspeech-0.5.0-models
+_ Now download an audio file you want the model to do speech to text recognition
+_ Put this model in the preferred directory
+_ Go to the preferred directory on the command line and run this command:
 `deepspeech --model models/output_graph.pbmm --alphabet models/alphabet.txt --lm models/lm.binary --trie models/trie --audio my_audio_file.wav`
-EXCEPT: replace my_audio_file.wav with your audio file and 
+
+_ EXCEPT: replace my_audio_file.wav with your audio file and 
 --lm and --trie tags are optional
-Replace models with deepspeech-0.5.0-models or with the name of the folder created from the download
+_ Replace models with deepspeech-0.5.0-models or with the name of the folder created from the download
 
 
 
