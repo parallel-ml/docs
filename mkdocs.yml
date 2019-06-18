@@ -11,4 +11,5 @@ nav:
     - iRobot:
         - Keyboard Control: irobot/keyboard.md
     - ASPLOS: asplos/real-time.md
+    - People: people/people.md
 theme: readthedocs
