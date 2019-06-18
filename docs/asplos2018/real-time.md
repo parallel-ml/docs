@@ -1,5 +1,5 @@
-# Real-Time Image Recognition Using Collaborative IoT Devices 
-__ACM ReQuEST workshop co-located with ASPLOS 2018__
+## Introduction
+This is demo of **Real-Time Image Recognition Using Collaborative IoT Devices** at __ACM ReQuEST workshop co-located with ASPLOS 2018__
 
 [Github repo](https://github.com/parallel-ml/asplos2018-workshop)
 
