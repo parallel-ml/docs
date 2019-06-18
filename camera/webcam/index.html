@@ -7,16 +7,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
-  <link rel="shortcut icon" href="./img/favicon.ico">
-  <title>distributed cloud ML</title>
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Webcam video/image - distributed cloud ML</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
-  <link rel="stylesheet" href="./css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="./css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   
-  <script src="./js/jquery-2.1.1.min.js" defer></script>
-  <script src="./js/modernizr-2.8.3.min.js" defer></script>
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Webcam video/image";
+    var mkdocs_page_input_path = "camera/webcam.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
   
@@ -29,9 +36,9 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
       <div class="wy-side-nav-search">
-        <a href="./." class="icon icon-home"> distributed cloud ML</a>
+        <a href="../.." class="icon icon-home"> distributed cloud ML</a>
         <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
@@ -43,7 +50,7 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href="./.">Home</a>
+    <a class="" href="../..">Home</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -52,7 +59,7 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="./getting-started/setting-up-pi/">Connecting to Raspberry Pi</a>
+    <a class="" href="../../getting-started/setting-up-pi/">Connecting to Raspberry Pi</a>
                 </li>
     </ul>
 	    </li>
@@ -63,11 +70,17 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="./camera/picamera/">Using the PiCamera</a>
+    <a class="" href="../picamera/">Using the PiCamera</a>
                 </li>
-                <li class="">
+                <li class=" current">
                     
-    <a class="" href="./camera/webcam/">Webcam video/image</a>
+    <a class="current" href="./">Webcam video/image</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#webcam-videoimage">Webcam Video/Image</a></li>
+    
+
+    </ul>
                 </li>
     </ul>
 	    </li>
@@ -78,7 +91,7 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="./speech/deepspeech/">Deepspeech</a>
+    <a class="" href="../../speech/deepspeech/">Deepspeech</a>
                 </li>
     </ul>
 	    </li>
@@ -93,7 +106,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="./.">distributed cloud ML</a>
+        <a href="../..">distributed cloud ML</a>
       </nav>
 
       
@@ -101,9 +114,15 @@
         <div class="rst-content">
           <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="./.">Docs</a> &raquo;</li>
+    <li><a href="../..">Docs</a> &raquo;</li>
     
+      
+        
+          <li>Cameras &raquo;</li>
+        
+      
     
+    <li>Webcam video/image</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -113,22 +132,32 @@
           <div role="main">
             <div class="section">
               
+                <h1 id="webcam-videoimage">Webcam Video/Image</h1>
+<p>Install streamer:</p>
+<pre><code class="bash">sudo apt-get install streamer
+</code></pre>
 
-  <h1 id="search">Search Results</h1>
+<p>Record video or capture </p>
+<pre><code class="bash">streamer -q -c /dev/video0 -r 10 -t 00:00:20 -s 640x480 -o ~/test0000.jpeg
+streamer -q -c /dev/video0 -f rgb24 -t 00:01:30 -r 10 -s 640x480 -o ~/outfile.avi
+</code></pre>
 
-  <form id="content_search" action="search.html">
-    <span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>
-    <input name="q" id="mkdocs-search-query" type="text" class="search_input search-query ui-autocomplete-input" placeholder="Search the Docs" autocomplete="off" autofocus title="Type search term here">
-  </form>
-
-  <div id="mkdocs-search-results" class="search-results">
-    Searching...
-  </div>
-
-
+<p>Convert to .mov to compress, then transfer. The options is set to work with Quick Time, but VLC works with any option (e.g., audio format and pixel format)</p>
+<pre><code class="bash">ffmpeg -i outfile.avi -acodec libmp3lame -ab 192 -pix_fmt yuv420p -r 9 output.mov
+</code></pre>
+              
             </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../speech/deepspeech/" class="btn btn-neutral float-right" title="Deepspeech">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../picamera/" class="btn btn-neutral" title="Using the PiCamera"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
@@ -152,12 +181,16 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
+        <span><a href="../picamera/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../../speech/deepspeech/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
-    <script>var base_url = '.';</script>
-    <script src="./js/theme.js" defer></script>
-      <script src="./search/main.js" defer></script>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
 
 </body>
 </html>
