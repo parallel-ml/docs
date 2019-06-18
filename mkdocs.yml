@@ -8,4 +8,6 @@ nav:
         - Webcam video/image: camera/webcam.md
     - Speech Recognition:
         - Deepspeech: speech/deepspeech.md
+    - iRobot:
+        - Keyboard Control: irobot/keyboard.md
 theme: readthedocs
