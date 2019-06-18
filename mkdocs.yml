@@ -1,5 +1,5 @@
 site_name: distributed cloud ML 
-nav:
+
     - Home: index.md
     - Getting Started:
         - Connecting to Raspberry Pi: getting-started/setting-up-pi.md
@@ -10,6 +10,6 @@ nav:
         - Deepspeech: speech/deepspeech.md
     - iRobot:
         - Keyboard Control: irobot/keyboard.md
-    - ASPLOS: asplos/real-time.md
+    - ASPLOS 2018: asplos2018/real-time.md
     - People: people/people.md
 theme: readthedocs
