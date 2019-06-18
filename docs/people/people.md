@@ -1,11 +1,11 @@
-## Faculty
+## Faculty  
 * [Hyesoon Kim](https://www.cc.gatech.edu/~hyesoon/)
 ------
-## Graduate Students
+## Graduate Students  
 * [Ramyad Hadidi](https://ramyadhadidi.github.io/)
 * [Jiashen Cao](https://jiashenc.github.io/)
 ------
-## Undergraduate Students
+## Undergraduate Students  
 ### Fall 2017
 * Jiashen Cao
 * Matthew Woodward
