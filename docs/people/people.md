@@ -1,5 +1,6 @@
-## Faculty  
+# Our Group
 
+## Faculty  
 
 * [Hyesoon Kim](https://www.cc.gatech.edu/~hyesoon/)
 ------
