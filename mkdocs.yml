@@ -10,4 +10,5 @@ nav:
         - Deepspeech: speech/deepspeech.md
     - iRobot:
         - Keyboard Control: irobot/keyboard.md
+    - ASPLOS: asplos/real-time.md
 theme: readthedocs
