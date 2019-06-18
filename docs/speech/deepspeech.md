@@ -1,11 +1,14 @@
-# Utilizing Deepspeech on Raspberry pi 
+# Deepspeech on Raspberry Pi 
 
 **Requirements: have python3 installed with pip3**
 
 https://github.com/mozilla/DeepSpeech#using-the-python-package
 
 
-# Run deepspeech with training model: (use python deepspeech package) 
+# Run Deepspeech with Trained Model
+
+(use python deepspeech package) 
+
 **WARNING: this model is really big: 1.6 GB; so you cannot do this on raspberry pi**
 
 Follow steps under Using Pre-trained mode on the github page (https://github.com/mozilla/DeepSpeech#using-the-python-package), using python package which are:
@@ -54,8 +57,9 @@ virtualenv -p python3 $HOME/tmp/deepspeech-venv/
 
 
 
+# Making Your Own Model
 
-# Next we tried to make our own model to see if we can reduce the model size:
+Next we tried to make our own model to see if we can reduce the model size:
 
 1.) When running on a raspberry pi, go to the "connecting to the raspberry pi" docs to connect
 
