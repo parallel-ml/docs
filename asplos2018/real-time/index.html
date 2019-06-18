@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Real-Time Image Recognition Using Collaborative IoT Devices - distributed cloud ML</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Real-Time Image Recognition Using Collaborative IoT Devices";
+    var mkdocs_page_input_path = "asplos2018/real-time.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> distributed cloud ML</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Getting Started</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../getting-started/setting-up-pi/">Connecting to Raspberry Pi</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Cameras</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../camera/picamera/">Using the PiCamera</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../camera/webcam/">Webcam video/image</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Speech Recognition</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../speech/deepspeech/">Deepspeech</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">iRobot</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../irobot/keyboard/">Keyboard Control</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../asplos/real-time.md">ASPLOS</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">distributed cloud ML</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Real-Time Image Recognition Using Collaborative IoT Devices</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="real-time-image-recognition-using-collaborative-iot-devices">Real-Time Image Recognition Using Collaborative IoT Devices</h1>
+<p><strong>ACM ReQuEST workshop co-located with ASPLOS 2018</strong></p>
+<p><a href="https://github.com/parallel-ml/asplos2018-workshop">Github repo</a></p>
+<p>This repository contains demo files for demonstration of Musical Chair[1] applied on two state-of-art 
+deep learning neural networks, AlexNet[2] and VGG16[3].</p>
+<h2 id="installation">Installation</h2>
+<p>Please make sure that you have <b>Python 2.7</b> running on your device. We have
+two versions of model inference. One is using GPU and running model inference on
+single machine. Another is using CPU and using RPC to off-shore the computation
+to other devices. We will have different installation guide for those two versions
+model inference. </p>
+<h3 id="single-device-gpu-and-cpu">Single device (GPU and CPU).</h3>
+<p><em>(This is NVidia Jetson TX2 version in our paper)</em></p>
+<p>Dependencies:
+<em> tensorflow-gpu &gt;= 1.5.0
+</em> Keras &gt;= 2.1.3</p>
+<pre><code class="angular2html">pip install keras
+</code></pre>
+
+<p><a href="https://github.com/keras-team/keras">Please refer to official installation guideline from Keras for more information</a></p>
+<h3 id="multiple-devices-cpu-and-rpc">Multiple devices (CPU and RPC).</h3>
+<p><em>(This is Raspberry PI 3 versions in our paper)</em></p>
+<p>Dependencies:
+<em> tensorflow &gt;= 1.5.0
+</em> Keras &gt;= 2.1.3
+* avro &gt;= 1.8.2</p>
+<p>We have provided dependency file here. You can execute this file to install packages.</p>
+<pre><code class="angular2html">pip install -r requirements.txt
+</code></pre>
+
+<h2 id="quick-start">Quick Start</h2>
+<h3 id="single-device-gpu-and-cpu_1">Single device (GPU and CPU)</h3>
+<p><em>(This is NVidia Jetson TX2 version in our paper)</em></p>
+<h4 id="gpu-version">GPU Version</h4>
+<p>Execute predict file to run model inference. </p>
+<pre><code>python predict.py
+</code></pre>
+
+<h4 id="cpu-version">CPU Version</h4>
+<pre><code>CUDA_VISIBLE_DEVICES= python predict.py
+</code></pre>
+
+<h3 id="multiple-devices-cpu-and-rpc_1">Multiple devices (CPU and RPC)</h3>
+<p><em>(This is Raspberry PI 3 versions in our paper)</em></p>
+<p>We make a checklist for you before running our program.
+- [ ] Have all correct packages installed on Raspberry Pi. 
+- [ ] The Raspberry PI has port 12345, 9999 open. 
+- [ ] Put correct IP address in IP table file <code>mutiple-devices/alexnet/resource/ip</code>. 
+The IP table file is in <code>json</code> format. </p>
+<h4 id="alexnet">AlexNet</h4>
+<p>For AlexNet, we have same model partition, so we will use the same node file for 
+different system setup. The IP table is default to 4 devices setup. You need to 
+add 1 more IP address to <code>block1</code> if you want to test 6 devices setup.</p>
+<p><img alt="alexnet" src="https://github.com/parallel-ml/asplos2018-workshop/blob/master/figs/alexnet-nodes.png" /></p>
+<ul>
+<li>On all of your device except the initial sender, run the node.</li>
+</ul>
+<pre><code class="angular2html">python node.py
+</code></pre>
+
+<ul>
+<li>Start the data sender. You should be able to see console log.</li>
+</ul>
+<pre><code class="angular2html">python initial.py
+</code></pre>
+
+<ul>
+<li>If you modify our code, you can use flag to debug.</li>
+</ul>
+<pre><code class="angular2html">python node.py -d
+</code></pre>
+
+<h4 id="vgg16">VGG16</h4>
+<p>For VGG16, we have different model separation for different system setup, so we put
+two directories under <code>mutiple-devices/vgg16</code>. For <code>8devices</code>, you should have 3 devices for
+<b>block234</b> and 2 devices for <b>fc1</b>, which means you need 2 IP addresses for those
+2 blocks in IP table. For <code>11devices</code>, you should have 7 devices for <b>block12345</b>,
+so put 7 IP addresses at IP table. </p>
+<p><img alt="vgg16" src="https://github.com/parallel-ml/asplos2018-workshop/blob/master/figs/vgg-8nodes.png" /></p>
+<ul>
+<li>On all of your device except the initial sender, run the node.</li>
+</ul>
+<pre><code class="angular2html">python node.py
+</code></pre>
+
+<ul>
+<li>Start the data sender. You should be able to see console log.</li>
+</ul>
+<pre><code class="angular2html">python initial.py
+</code></pre>
+
+<h3 id="refereces">Refereces</h3>
+<p>[1]: R. Hadidi, J. Cao, M. Woodward, M. Ryoo, and H. Kim, "Musical Chair: Efficient Real-Time Recognition Using Collaborative IoT Devices," ArXiv e-prints:1802.02138.</p>
+<p>[2]: A. Krizhevsky, I. Sutskever, and G. E. Hinton, "Imagenet Classification With Deep Convolutional Neural Networks}," in Advances in Neural InformationProcessing Systems (NIPS), pp. 1097--1105, 2012.</p>
+<p>[3]: K. Simonyan and A. Zisserman, "Very Deep Convolutional Networks for Large-Scale Image Recognition," in International Conference onLearning Representations (ICLR), 2015.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>
