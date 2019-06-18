@@ -1,4 +1,4 @@
-## Using the PiCamera
+## Using the PiCamera Module
 For using the PiCamera on a Raspberry Pi, you should, after connecting the camera to the Raspberry, update and upgrade your pi with:
 
 `sudo apt-get update`
