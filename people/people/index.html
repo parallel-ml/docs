@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Webcam video/image - distributed cloud ML</title>
+  <title>People - distributed cloud ML</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,8 +17,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Webcam video/image";
-    var mkdocs_page_input_path = "camera/webcam.md";
+    var mkdocs_page_name = "People";
+    var mkdocs_page_input_path = "people/people.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -70,17 +70,11 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../picamera/">Using the PiCamera</a>
+    <a class="" href="../../camera/picamera/">Using the PiCamera</a>
                 </li>
-                <li class=" current">
+                <li class="">
                     
-    <a class="current" href="./">Webcam video/image</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#webcam-videoimage">Webcam Video/Image</a></li>
-    
-
-    </ul>
+    <a class="" href="../../camera/webcam/">Webcam video/image</a>
                 </li>
     </ul>
 	    </li>
@@ -112,9 +106,12 @@
     <a class="" href="../../asplos/real-time.md">ASPLOS</a>
 	    </li>
           
-            <li class="toctree-l1">
+            <li class="toctree-l1 current">
 		
-    <a class="" href="../../people/people/">People</a>
+    <a class="current" href="./">People</a>
+    <ul class="subnav">
+            
+    </ul>
 	    </li>
           
         </ul>
@@ -138,12 +135,8 @@
     <li><a href="../..">Docs</a> &raquo;</li>
     
       
-        
-          <li>Cameras &raquo;</li>
-        
-      
     
-    <li>Webcam video/image</li>
+    <li>People</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -153,19 +146,60 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="webcam-videoimage">Webcam Video/Image</h1>
-<p>Install streamer:</p>
-<pre><code class="bash">sudo apt-get install streamer
-</code></pre>
-
-<p>Record video or capture </p>
-<pre><code class="bash">streamer -q -c /dev/video0 -r 10 -t 00:00:20 -s 640x480 -o ~/test0000.jpeg
-streamer -q -c /dev/video0 -f rgb24 -t 00:01:30 -r 10 -s 640x480 -o ~/outfile.avi
-</code></pre>
-
-<p>Convert to .mov to compress, then transfer. The options is set to work with Quick Time, but VLC works with any option (e.g., audio format and pixel format)</p>
-<pre><code class="bash">ffmpeg -i outfile.avi -acodec libmp3lame -ab 192 -pix_fmt yuv420p -r 9 output.mov
-</code></pre>
+                <p><strong>Faculty</strong>
+* <a href="https://www.cc.gatech.edu/~hyesoon/">Hyesoon Kim</a></p>
+<hr />
+<p><strong>Graduate Students</strong>
+<em> <a href="https://ramyadhadidi.github.io/">Ramyad Hadidi</a>
+</em> <a href="https://jiashenc.github.io/">Jishen Cao</a></p>
+<hr />
+<p><strong>Undergraduate Students</strong>
+* Fall 2017:
+  + Jiashen Cao
+  + Matthew Woodward</p>
+<ul>
+<li>Spring 2018:</li>
+<li>
+<p>Jiashen Cao</p>
+</li>
+<li>
+<p>Fall 2018:</p>
+</li>
+<li>
+<p>Chunjun Jia</p>
+</li>
+<li>
+<p>Spring 2019:</p>
+</li>
+<li>Matthew Merck</li>
+<li>Arthur Siqueira</li>
+<li>Qiusen Huang</li>
+<li>Abhijeet Saraha</li>
+<li>Bingyao Wang</li>
+<li>Dongsuk Lim </li>
+<li>Lixing Liu</li>
+<li>
+<p>Chunjun Jia</p>
+</li>
+<li>
+<p>Summer 2019:</p>
+</li>
+<li>Arthur Siqueira</li>
+<li>Abhijeet Saraha</li>
+<li>Chunjun Jia</li>
+<li>Taejoon Park</li>
+<li>Mohan Dodda</li>
+<li>Sayuj Shajith</li>
+<li>Songming Liu</li>
+<li>Thai Tran</li>
+<li>Jinwoo Park</li>
+<li>Nima Shoghi</li>
+<li>Younmin Bae</li>
+<li>Akanksha Telagamsetty</li>
+<li>Ayushi Chaudhary</li>
+<li>Abhi Bothera</li>
+<li>Kabir Kohli</li>
+</ul>
               
             </div>
           </div>
@@ -173,10 +207,8 @@ streamer -q -c /dev/video0 -f rgb24 -t 00:01:30 -r 10 -s 640x480 -o ~/outfile.av
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../../speech/deepspeech/" class="btn btn-neutral float-right" title="Deepspeech">Next <span class="icon icon-circle-arrow-right"></span></a>
       
-      
-        <a href="../picamera/" class="btn btn-neutral" title="Using the PiCamera"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../irobot/keyboard/" class="btn btn-neutral" title="Keyboard Control"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -202,10 +234,8 @@ streamer -q -c /dev/video0 -f rgb24 -t 00:01:30 -r 10 -s 640x480 -o ~/outfile.av
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../picamera/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../../irobot/keyboard/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
-      
-        <span style="margin-left: 15px"><a href="../../speech/deepspeech/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
