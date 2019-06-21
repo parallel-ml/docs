@@ -6,8 +6,14 @@ nav:
     - Cameras:
         - Using the PiCamera: camera/picamera.md
         - Webcam video/image: camera/webcam.md
+    - Vision System:
+        - Character Recognition: vision/character.md
     - Speech Recognition:
         - Deepspeech: speech/deepspeech.md
+        - Sphinx: speech/sphinx.md
+        - Text to Speech: speech/text-to-speech.md
+    - Mapping:
+        - Lidar SLAM: mapping/lidar-slam.md
     - iRobot:
         - Keyboard Control: irobot/keyboard.md
     - ASPLOS 2018: asplos2018/real-time.md
