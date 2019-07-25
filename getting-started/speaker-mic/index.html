@@ -188,14 +188,24 @@
             <div class="section">
               
                 <h1 id="speaker-and-mic-setup">Speaker and Mic Setup</h1>
+<p>Author: Ramyad
+Date: 7/25/2019</p>
 <ul>
 <li>
-<p>List all Playback Devices <code>aplay -l</code><br />
-  See your card and device number</p>
+<p>List All devices: <code>cat /proc/asound/cards</code></p>
 </li>
 <li>
-<p>List all Recording Devices <code>arecord -l</code><br />
+<p>List all Playback Devices <code>aplay -l</code><br />
+  See your card and device number<br />
+  Note: you need to set volume <code>alsamixer -c &lt;card_number&gt;</code><br />
+  Note: you can also use <code>pacmd set-source-volume &lt;index&gt; &lt;volume&gt;</code></p>
+</li>
+<li>
+<p>List all Recording Devices <code>arecord -l</code> or <code>pacmd list-sources</code><br />
     See your card and device number</p>
+</li>
+<li>
+<p>Control devices with <code>alsamixer</code>, use F6 to select your device:wq</p>
 </li>
 <li>
 <p>Set your Recording and Playback Device as the Default PCM Devices, in <code>/etc/asound.conf</code>  </p>

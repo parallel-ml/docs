@@ -202,6 +202,13 @@
                 <h1 id="cmu-sphinx">CMU Sphinx</h1>
 <p>Authors: Ramyad, Sayuj<br />
 Date: 7/25/2019</p>
+<p>Fast Setup:</p>
+<pre><code>git clone https://github.com/parallel-ml/sphinxSpeech2Text
+./install.sh
+make
+./decode
+</code></pre>
+
 <p>Parallel-ml repo: <a href="https://github.com/parallel-ml/sphinxSpeech2Text">https://github.com/parallel-ml/sphinxSpeech2Text</a></p>
 <p>I used the pocketsphinx to decode the audio files on the raspberry pi’s. I installed it on the raspberry pi by following these instructions: <a href="https://cmusphinx.github.io/wiki/tutorialpocketsphinx/#installation-on-unix-system">link</a></p>
 <p>Then I used the pocketsphinx_continuous command line command. There are multiple options, such as <code>-inmic</code>, which while use the system’s default microphone to detect and live decode the speech. You can also decode files using the <code>-infile</code> flag, then type the directory of the file relative to where you are calling the command from.</p>
