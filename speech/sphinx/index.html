@@ -61,6 +61,10 @@
                     
     <a class="" href="../../getting-started/setting-up-pi/">Connecting to Raspberry Pi</a>
                 </li>
+                <li class="">
+                    
+    <a class="" href="../../getting-started/speaker-mic/">Setting Up Speaker and Mic</a>
+                </li>
     </ul>
 	    </li>
           
@@ -196,10 +200,12 @@
             <div class="section">
               
                 <h1 id="cmu-sphinx">CMU Sphinx</h1>
+<p>Authors: Ramyad, Sayuj<br />
+Date: 7/25/2019</p>
 <p>Parallel-ml repo: <a href="https://github.com/parallel-ml/sphinxSpeech2Text">https://github.com/parallel-ml/sphinxSpeech2Text</a></p>
 <p>I used the pocketsphinx to decode the audio files on the raspberry pi’s. I installed it on the raspberry pi by following these instructions: <a href="https://cmusphinx.github.io/wiki/tutorialpocketsphinx/#installation-on-unix-system">link</a></p>
-<p>Then I used the pocketsphinx_continuous command line command. There are multiple options, such as <code>-inmic</code>, which while use the system’s default microphone to detect and live decode the speech. You can also decode files using the <code>-infile</code> flag, then type the directory of the file relative to where you are calling the command from. </p>
-<p>You can change the dictionary and the language model that the program uses by using the <code>-dict</code> and <code>-lm</code> flags. I created my own dictionary an language model using a tool I found online <a href="http://www.speech.cs.cmu.edu/tools/lmtool-new.html">link</a>, specifically made for pocketsphinx. I did this so that we could reduce the language model size to improve performance and accuracy. I found that the performance was 6x faster when I used my reduced dictionary, and obviously the accuracy is better, but it loses flexibility. </p>
+<p>Then I used the pocketsphinx_continuous command line command. There are multiple options, such as <code>-inmic</code>, which while use the system’s default microphone to detect and live decode the speech. You can also decode files using the <code>-infile</code> flag, then type the directory of the file relative to where you are calling the command from.</p>
+<p>You can change the dictionary and the language model that the program uses by using the <code>-dict</code> and <code>-lm</code> flags. I created my own dictionary an language model using a tool I found online <a href="http://www.speech.cs.cmu.edu/tools/lmtool-new.html">link</a>, specifically made for pocketsphinx. I did this so that we could reduce the language model size to improve performance and accuracy. I found that the performance was 6x faster when I used my reduced dictionary, and obviously the accuracy is better, but it loses flexibility.</p>
 <p>The next steps are to increase the dictionary to include a more variety of words, and increase the flexibility of commands that can be given to the raspberry pi. Below I have attached pictures of terminal output that shows the difference in performance. The output on the top shows performance with smaller dictionary and language model, the output on the bottom is the original dictionary that pocketsphinx comes with. It took more than 6x longer and it was less accurate.</p>
 <pre><code class="BASH">pi@n1:/Research$ ./decode.out  
 MOVE DOWN  

@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Using the PiCamera - distributed cloud ML</title>
+  <title>Setting Up Speaker and Mic - distributed cloud ML</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,8 +17,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Using the PiCamera";
-    var mkdocs_page_input_path = "camera/picamera.md";
+    var mkdocs_page_name = "Setting Up Speaker and Mic";
+    var mkdocs_page_input_path = "getting-started/speaker-mic.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -59,11 +59,17 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../../getting-started/setting-up-pi/">Connecting to Raspberry Pi</a>
+    <a class="" href="../setting-up-pi/">Connecting to Raspberry Pi</a>
                 </li>
-                <li class="">
+                <li class=" current">
                     
-    <a class="" href="../../getting-started/speaker-mic/">Setting Up Speaker and Mic</a>
+    <a class="current" href="./">Setting Up Speaker and Mic</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#speaker-and-mic-setup">Speaker and Mic Setup</a></li>
+    
+
+    </ul>
                 </li>
     </ul>
 	    </li>
@@ -72,22 +78,13 @@
 		
     <span class="caption-text">Cameras</span>
     <ul class="subnav">
-                <li class=" current">
+                <li class="">
                     
-    <a class="current" href="./">Using the PiCamera</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#using-the-picamera-module">Using the PiCamera Module</a></li>
-    
-
-    <li class="toctree-l3"><a href="#visualizing-pictures-via-ssh">Visualizing pictures via ssh</a></li>
-    
-
-    </ul>
+    <a class="" href="../../camera/picamera/">Using the PiCamera</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../webcam/">Webcam video/image</a>
+    <a class="" href="../../camera/webcam/">Webcam video/image</a>
                 </li>
     </ul>
 	    </li>
@@ -176,11 +173,11 @@
     
       
         
-          <li>Cameras &raquo;</li>
+          <li>Getting Started &raquo;</li>
         
       
     
-    <li>Using the PiCamera</li>
+    <li>Setting Up Speaker and Mic</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -190,29 +187,60 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="using-the-picamera-module">Using the PiCamera Module</h2>
-<p>For using the PiCamera on a Raspberry Pi, you should, after connecting the camera to the Raspberry, update and upgrade your pi with:</p>
-<p><code>sudo apt-get update</code></p>
-<p>and</p>
-<p><code>sudo apt-get upgrade</code></p>
-<p>That may take some short time.</p>
-<p>Then, you have to enable the camera in the raspberry settings by:
-'sudo raspi-config'</p>
-<p>Reboot the pi after that:</p>
-<p><code>sudo reboot</code></p>
-<p>Give some time for the pi to reboot and log again into it.</p>
-<p>Finally, test your camera with:</p>
-<p><code>raspistill -o image.jpg</code></p>
-<p>(it takes a picture and saves it as <code>image.jpg</code>)</p>
-<p>After that, a new jpeg file should appear in your directory.</p>
-<p>General Helpfull information about PiCamera (https://picamera.readthedocs.io/en/release-1.12)</p>
-<h2 id="visualizing-pictures-via-ssh">Visualizing pictures via ssh</h2>
-<p>If you want to display the images of image files in your computer, make sure to connect to the pi with:</p>
-<p><code>ssh -X pi@&lt;pi_adress&gt;</code>(focus on the <code>-X</code>)</p>
-<p>Install <code>feh</code> if you the don't have it yet:</p>
-<p><code>sudo apt-get install feh</code></p>
-<p>And finally do:</p>
-<p><code>feh &lt;image_file&gt;.jpg</code></p>
+                <h1 id="speaker-and-mic-setup">Speaker and Mic Setup</h1>
+<ul>
+<li>
+<p>List all Playback Devices <code>aplay -l</code><br />
+  See your card and device number</p>
+</li>
+<li>
+<p>List all Recording Devices <code>arecord -l</code><br />
+    See your card and device number</p>
+</li>
+<li>
+<p>Set your Recording and Playback Device as the Default PCM Devices, in <code>/etc/asound.conf</code>  </p>
+</li>
+</ul>
+<pre><code>pcm.!default {
+  type asym
+  capture.pcm &quot;mic&quot;
+  playback.pcm &quot;speaker&quot;
+}
+pcm.mic {
+  type plug
+  slave {
+    pcm &quot;hw:&lt;card number&gt;,&lt;device number&gt;&quot;
+  }
+}
+pcm.speaker {
+  type plug
+  slave {
+    pcm &quot;hw:&lt;card number&gt;,&lt;device number&gt;&quot;
+  }
+}
+</code></pre>
+
+<ul>
+<li>Live Streaming  </li>
+</ul>
+<pre><code class="BASH">arecord --format=S16_LE --rate=16k -D sysdefault:CARD=1 | aplay --format=S16_LE --rate=16000
+</code></pre>
+
+<ul>
+<li>
+<p>Testing Playback <code>speaker-test -t wav -c 2</code></p>
+</li>
+<li>
+<p>Test Recording Device  </p>
+</li>
+</ul>
+<pre><code>arecord --format=S16_LE --duration=5 --rate=16000 --file-type=raw out.raw
+aplay --format=S16_LE --rate=16000 out.raw
+</code></pre>
+
+<ul>
+<li>Speaker and Mic Volume Control <code>alsamixer -c "card number"</code></li>
+</ul>
               
             </div>
           </div>
@@ -220,10 +248,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../webcam/" class="btn btn-neutral float-right" title="Webcam video/image">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../../camera/picamera/" class="btn btn-neutral float-right" title="Using the PiCamera">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../../getting-started/speaker-mic/" class="btn btn-neutral" title="Setting Up Speaker and Mic"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../setting-up-pi/" class="btn btn-neutral" title="Connecting to Raspberry Pi"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -249,10 +277,10 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../../getting-started/speaker-mic/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../setting-up-pi/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../webcam/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../../camera/picamera/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
