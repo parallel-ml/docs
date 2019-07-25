@@ -2,6 +2,13 @@
 Authors: Ramyad, Sayuj  
 Date: 7/25/2019
 
+Fast Setup:
+```
+git clone https://github.com/parallel-ml/sphinxSpeech2Text
+./install.sh
+make
+./decode
+```
 
 Parallel-ml repo: [https://github.com/parallel-ml/sphinxSpeech2Text](https://github.com/parallel-ml/sphinxSpeech2Text)
 

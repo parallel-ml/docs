@@ -1,10 +1,18 @@
 # Speaker and Mic Setup
+Author: Ramyad
+Date: 7/25/2019
+
+- List All devices: `cat /proc/asound/cards`
 
 - List all Playback Devices `aplay -l`  
-  See your card and device number
+  See your card and device number  
+  Note: you need to set volume `alsamixer -c <card_number>`  
+  Note: you can also use `pacmd set-source-volume <index> <volume>`
 
-- List all Recording Devices `arecord -l`  
+- List all Recording Devices `arecord -l` or `pacmd list-sources`  
     See your card and device number
+
+- Control devices with `alsamixer`, use F6 to select your device:wq
 
 - Set your Recording and Playback Device as the Default PCM Devices, in `/etc/asound.conf`  
 
