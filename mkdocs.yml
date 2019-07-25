@@ -1,8 +1,9 @@
-site_name: distributed cloud ML 
+site_name: distributed cloud ML
 nav:
     - Home: index.md
     - Getting Started:
         - Connecting to Raspberry Pi: getting-started/setting-up-pi.md
+        - Setting Up Speaker and Mic: getting-started/speaker-mic.md
     - Cameras:
         - Using the PiCamera: camera/picamera.md
         - Webcam video/image: camera/webcam.md
