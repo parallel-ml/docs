@@ -25,3 +25,17 @@ We are using Python 2.7 for this project. PLEASE DO NOT CHANGE THE RASPBERRY PI'
 **Package Installation**  
 `pip` is always recommended for Python package installations. A cleaner way would be using 
 [virtualenv](https://virtualenv.pypa.io/en/latest/), so that your environment won't interfere with others'.
+
+**Long compling time with pip installation**
+
+You can use piwheels by placing the following lines in /etc/pip.conf:
+
+```
+[global]
+extra-index-url=https://www.piwheels.org/simple
+```
+
+Then pip will search in wheels to install any package first.
+
+Also, you can download your wheel from here manually:
+https://pythonwheels.com/
