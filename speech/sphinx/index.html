@@ -196,6 +196,7 @@
             <div class="section">
               
                 <h1 id="cmu-sphinx">CMU Sphinx</h1>
+<p>Parallel-ml repo: <a href="https://github.com/parallel-ml/sphinxSpeech2Text">https://github.com/parallel-ml/sphinxSpeech2Text</a></p>
 <p>I used the pocketsphinx to decode the audio files on the raspberry pi’s. I installed it on the raspberry pi by following these instructions: <a href="https://cmusphinx.github.io/wiki/tutorialpocketsphinx/#installation-on-unix-system">link</a></p>
 <p>Then I used the pocketsphinx_continuous command line command. There are multiple options, such as <code>-inmic</code>, which while use the system’s default microphone to detect and live decode the speech. You can also decode files using the <code>-infile</code> flag, then type the directory of the file relative to where you are calling the command from. </p>
 <p>You can change the dictionary and the language model that the program uses by using the <code>-dict</code> and <code>-lm</code> flags. I created my own dictionary an language model using a tool I found online <a href="http://www.speech.cs.cmu.edu/tools/lmtool-new.html">link</a>, specifically made for pocketsphinx. I did this so that we could reduce the language model size to improve performance and accuracy. I found that the performance was 6x faster when I used my reduced dictionary, and obviously the accuracy is better, but it loses flexibility. </p>
@@ -243,6 +244,9 @@ sudo make install
 
 <h3 id="example-of-running-with-c">Example of Running with C</h3>
 <p>Contents of decode.c</p>
+<pre><code class="BASH">gcc -o decode decode.c
+</code></pre>
+
 <pre><code class="CPP">#include &lt;stdlib.h&gt;
 #include &lt;stdio.h&gt;
 #include &lt;time.h&gt;
