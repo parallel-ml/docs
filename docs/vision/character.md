@@ -1,1 +1,1 @@
-# Template - Character Recognition
+# Character Recognition

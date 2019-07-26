@@ -9,6 +9,7 @@ nav:
         - Webcam video/image: camera/webcam.md
     - Vision System:
         - Character Recognition: vision/character.md
+        - LIDAR: vision/lidar.md
     - Speech Recognition:
         - Deepspeech: speech/deepspeech.md
         - Sphinx: speech/sphinx.md
@@ -17,6 +18,7 @@ nav:
         - Lidar SLAM: mapping/lidar-slam.md
     - iRobot:
         - Keyboard Control: irobot/keyboard.md
+        - Navigation with Lidar/Voice: irobot/navi_lidar_voice.md
     - ASPLOS 2018: asplos2018/real-time.md
     - People: people/people.md
 theme: readthedocs
