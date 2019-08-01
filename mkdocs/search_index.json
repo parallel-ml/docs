@@ -101,47 +101,47 @@
             "title": "Webcam Video/Image"
         },
         {
-            "location": "/fpga/splitnet/",
+            "location": "/fpga/split-DNNs/",
             "text": "FPL19 Split Networks on FPGA\n\n\nImplementation of a split, distributed CNN (ResNet V1 18), deployed to 2 \nPYNQ FPGA boards\n using \nTVM/VTA\n.\n\n\nMotivation\n\n\nImplementation of deep neural networks (DNNs) are hard to achieve on edge devices because DNNs\noften require more resources than those provided by individual edge devices.\n\n\nThe idea of this project is to create an edge-tailored model by splitting a DNN into independent narrow DNNs to run\nseparately on multiple edge devices in parallel.\n\n\nThe outputs from the split networks are then\nconcatenated and fed through the fully connected layers to perform inference.\n\n\nCode Description\n\n\n\n\nsplitnet.py\n contains split models built with \nMxNet Gluon\n. Only \nresnet18_v1_split\n is implemented so far.\n\n\nresnet18_v1_split\n returns a split version of \nmxnet.gluon.model_zoo.vision.resnet18_v1\n; initialized with random weights.\n\n\ndemo.py\n demonstrates how to deploy split networks to 2 PYNQ FPGA boards with TVM/VTA and how to concatenate the results.\n\n\nautotune.py\n uses TVM's autotuning tool to achieve fast performance when running \nresnet18_v1_split\n on PYNQ FPGA. Currently broken.\n\n\n\n\nSetup\n\n\nPYNQ Boards\n\n\nTo deploy the split networks, first acquire 2 PYNQ boards\nand set them up following instructions \nhere\n.\n\n\nAfter PYNQ boards are set up, follow instructions \nhere\n to\nlaunch TVM-based RPC servers on both boards. You should see the following output when starting the RPC server:\n\n\nINFO:root:RPCServer: bind to 0.0.0.0:9091\n\n\n\n\nThe RPC server should be listening on port \n9091\n.\n\n\nLocal\n\n\nThe following instructions apply to your local machine. CNN models are developed, compiled\n& uploaded to PYNQ boards \nfrom your local machine\n via RPC.\n\n\nFirst, install TVM with LLVM enabled. Follow the instructions \nhere\n.\n\n\nInstall the necessary python dependencies:\n\n\npip3 install --user numpy decorator attrs\n\n\n\n\nNext, you need to add a configuration file for VTA:\n\n\ncd <tvm root>\ncp vta/config/pynq_sample.json vta/config/vta_config.json\n\n\n\n\nWhen the TVM compiler compiles the convolutional operators in a neural network, it queries a log file to\nget the best knob parameters to achieve fast performance. Normally, for a particular network, this log file\nis generated using TVM's autotuning tool (\nautotune.py\n).\n\n\nHowever, since this tool seems to be broken, log file\nfor \nresnet18_v1_split\n was manually created.\n\n\nMove this log file to where the compiler can find it:\n\n\ncd <project root>\ncp vta_v0.05.log ~/.tvm/tophub/vta_v0.05.log\n\n\n\n\nUsage\n\n\nAfter setup has been complete on both the PYNQ and host end, you are\nnow ready to deploy the split networks. \ndemo.py\n is a minimal example that shows you how to do this.\n\n\nFirst, install additional Python dependencies:\n\n\npip3 install --user mxnet pillow\n\n\n\n\nThen run the demo:\n\n\npython3 demo.py [--cpu] [--nonsplit] [--i]\n\n\n\n\nOptions:\n\n\n\n\n\n\n--cpu\n Run model on local machine instead of PYNQ boards.\n\n\n\n\n\n\n--nonsplit\n Run the non-split version of the model.\n\n\n\n\n\n\n--i\n Run the interactive version of the demo. This allows you to enter paths to image files to feed to model.\n\n\n\n\n\n\nBy default, the demo downloads 50 images of animals from Google Images, feeds them to the model, and reports the mean and standard deviation (in sec) of the inference delays.",
-            "title": "Splitnet"
+            "title": "split DNNs"
         },
         {
-            "location": "/fpga/splitnet/#fpl19-split-networks-on-fpga",
+            "location": "/fpga/split-DNNs/#fpl19-split-networks-on-fpga",
             "text": "Implementation of a split, distributed CNN (ResNet V1 18), deployed to 2  PYNQ FPGA boards  using  TVM/VTA .",
             "title": "FPL19 Split Networks on FPGA"
         },
         {
-            "location": "/fpga/splitnet/#motivation",
+            "location": "/fpga/split-DNNs/#motivation",
             "text": "Implementation of deep neural networks (DNNs) are hard to achieve on edge devices because DNNs\noften require more resources than those provided by individual edge devices.  The idea of this project is to create an edge-tailored model by splitting a DNN into independent narrow DNNs to run\nseparately on multiple edge devices in parallel.  The outputs from the split networks are then\nconcatenated and fed through the fully connected layers to perform inference.",
             "title": "Motivation"
         },
         {
-            "location": "/fpga/splitnet/#code-description",
+            "location": "/fpga/split-DNNs/#code-description",
             "text": "splitnet.py  contains split models built with  MxNet Gluon . Only  resnet18_v1_split  is implemented so far.  resnet18_v1_split  returns a split version of  mxnet.gluon.model_zoo.vision.resnet18_v1 ; initialized with random weights.  demo.py  demonstrates how to deploy split networks to 2 PYNQ FPGA boards with TVM/VTA and how to concatenate the results.  autotune.py  uses TVM's autotuning tool to achieve fast performance when running  resnet18_v1_split  on PYNQ FPGA. Currently broken.",
             "title": "Code Description"
         },
         {
-            "location": "/fpga/splitnet/#setup",
+            "location": "/fpga/split-DNNs/#setup",
             "text": "",
             "title": "Setup"
         },
         {
-            "location": "/fpga/splitnet/#pynq-boards",
+            "location": "/fpga/split-DNNs/#pynq-boards",
             "text": "To deploy the split networks, first acquire 2 PYNQ boards\nand set them up following instructions  here .  After PYNQ boards are set up, follow instructions  here  to\nlaunch TVM-based RPC servers on both boards. You should see the following output when starting the RPC server:  INFO:root:RPCServer: bind to 0.0.0.0:9091  The RPC server should be listening on port  9091 .",
             "title": "PYNQ Boards"
         },
         {
-            "location": "/fpga/splitnet/#local",
+            "location": "/fpga/split-DNNs/#local",
             "text": "The following instructions apply to your local machine. CNN models are developed, compiled\n& uploaded to PYNQ boards  from your local machine  via RPC.  First, install TVM with LLVM enabled. Follow the instructions  here .  Install the necessary python dependencies:  pip3 install --user numpy decorator attrs  Next, you need to add a configuration file for VTA:  cd <tvm root>\ncp vta/config/pynq_sample.json vta/config/vta_config.json  When the TVM compiler compiles the convolutional operators in a neural network, it queries a log file to\nget the best knob parameters to achieve fast performance. Normally, for a particular network, this log file\nis generated using TVM's autotuning tool ( autotune.py ).  However, since this tool seems to be broken, log file\nfor  resnet18_v1_split  was manually created.  Move this log file to where the compiler can find it:  cd <project root>\ncp vta_v0.05.log ~/.tvm/tophub/vta_v0.05.log",
             "title": "Local"
         },
         {
-            "location": "/fpga/splitnet/#usage",
+            "location": "/fpga/split-DNNs/#usage",
             "text": "After setup has been complete on both the PYNQ and host end, you are\nnow ready to deploy the split networks.  demo.py  is a minimal example that shows you how to do this.  First, install additional Python dependencies:  pip3 install --user mxnet pillow  Then run the demo:  python3 demo.py [--cpu] [--nonsplit] [--i]",
             "title": "Usage"
         },
         {
-            "location": "/fpga/splitnet/#options",
+            "location": "/fpga/split-DNNs/#options",
             "text": "--cpu  Run model on local machine instead of PYNQ boards.    --nonsplit  Run the non-split version of the model.    --i  Run the interactive version of the demo. This allows you to enter paths to image files to feed to model.    By default, the demo downloads 50 images of animals from Google Images, feeds them to the model, and reports the mean and standard deviation (in sec) of the inference delays.",
             "title": "Options:"
         },
