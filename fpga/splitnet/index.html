@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Speaker mic - distributed cloud ML</title>
+  <title>Splitnet - distributed cloud ML</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Speaker mic";
-    var mkdocs_page_input_path = "getting-started/speaker-mic.md";
-    var mkdocs_page_url = "/getting-started/speaker-mic/";
+    var mkdocs_page_name = "Splitnet";
+    var mkdocs_page_input_path = "fpga/splitnet.md";
+    var mkdocs_page_url = "/fpga/splitnet/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -82,9 +82,27 @@
 		
     <span class="caption-text">Fpga</span>
     <ul class="subnav">
-                <li class="">
+                <li class=" current">
                     
-    <a class="" href="../../fpga/splitnet/">Splitnet</a>
+    <a class="current" href="./">Splitnet</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#fpl19-split-networks-on-fpga">FPL19 Split Networks on FPGA</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#motivation">Motivation</a></li>
+        
+            <li><a class="toctree-l4" href="#code-description">Code Description</a></li>
+        
+            <li><a class="toctree-l4" href="#setup">Setup</a></li>
+        
+            <li><a class="toctree-l4" href="#usage">Usage</a></li>
+        
+        </ul>
+    
+
+    </ul>
                 </li>
     </ul>
 	    </li>
@@ -95,17 +113,11 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../setting-up-pi/">Setting up pi</a>
+    <a class="" href="../../getting-started/setting-up-pi/">Setting up pi</a>
                 </li>
-                <li class=" current">
+                <li class="">
                     
-    <a class="current" href="./">Speaker mic</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#speaker-and-mic-setup">Speaker and Mic Setup</a></li>
-    
-
-    </ul>
+    <a class="" href="../../getting-started/speaker-mic/">Speaker mic</a>
                 </li>
     </ul>
 	    </li>
@@ -199,11 +211,11 @@
     
       
         
-          <li>Getting started &raquo;</li>
+          <li>Fpga &raquo;</li>
         
       
     
-    <li>Speaker mic</li>
+    <li>Splitnet</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -213,70 +225,79 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="speaker-and-mic-setup">Speaker and Mic Setup</h1>
-<p>Author: Ramyad
-Date: 7/25/2019</p>
+                <h1 id="fpl19-split-networks-on-fpga">FPL19 Split Networks on FPGA</h1>
+<p>Implementation of a split, distributed CNN (ResNet V1 18), deployed to 2 <a href="https://pynq.io">PYNQ FPGA boards</a> using <a href="https://tvm.ai">TVM/VTA</a>.</p>
+<h2 id="motivation">Motivation</h2>
+<p>Implementation of deep neural networks (DNNs) are hard to achieve on edge devices because DNNs
+often require more resources than those provided by individual edge devices.</p>
+<p>The idea of this project is to create an edge-tailored model by splitting a DNN into independent narrow DNNs to run
+separately on multiple edge devices in parallel.</p>
+<p>The outputs from the split networks are then
+concatenated and fed through the fully connected layers to perform inference.</p>
+<h2 id="code-description">Code Description</h2>
 <ul>
-<li>
-<p>List All devices: <code>cat /proc/asound/cards</code></p>
-</li>
-<li>
-<p>List all Playback Devices <code>aplay -l</code><br />
-  See your card and device number<br />
-  Note: you need to set volume <code>alsamixer -c &lt;card_number&gt;</code><br />
-  Note: you can also use <code>pacmd set-source-volume &lt;index&gt; &lt;volume&gt;</code></p>
-</li>
-<li>
-<p>List all Recording Devices <code>arecord -l</code> or <code>pacmd list-sources</code><br />
-    See your card and device number</p>
-</li>
-<li>
-<p>Control devices with <code>alsamixer</code>, use F6 to select your device:wq</p>
-</li>
-<li>
-<p>Set your Recording and Playback Device as the Default PCM Devices, in <code>/etc/asound.conf</code>  </p>
-</li>
+<li><code>splitnet.py</code> contains split models built with <a href="https://mxnet.incubator.apache.org/versions/master/gluon/index.html">MxNet Gluon</a>. Only <code>resnet18_v1_split</code> is implemented so far.</li>
+<li><code>resnet18_v1_split</code> returns a split version of <code>mxnet.gluon.model_zoo.vision.resnet18_v1</code>; initialized with random weights.</li>
+<li><code>demo.py</code> demonstrates how to deploy split networks to 2 PYNQ FPGA boards with TVM/VTA and how to concatenate the results.</li>
+<li><code>autotune.py</code> uses TVM's autotuning tool to achieve fast performance when running <code>resnet18_v1_split</code> on PYNQ FPGA. Currently broken.</li>
 </ul>
-<pre><code>pcm.!default {
-  type asym
-  capture.pcm &quot;mic&quot;
-  playback.pcm &quot;speaker&quot;
-}
-pcm.mic {
-  type plug
-  slave {
-    pcm &quot;hw:&lt;card number&gt;,&lt;device number&gt;&quot;
-  }
-}
-pcm.speaker {
-  type plug
-  slave {
-    pcm &quot;hw:&lt;card number&gt;,&lt;device number&gt;&quot;
-  }
-}
+<h2 id="setup">Setup</h2>
+<h3 id="pynq-boards">PYNQ Boards</h3>
+<p>To deploy the split networks, first acquire 2 PYNQ boards
+and set them up following instructions <a href="https://pynq.readthedocs.io/en/latest/getting_started/pynq_z1_setup.html">here</a>.</p>
+<p>After PYNQ boards are set up, follow instructions <a href="https://docs.tvm.ai/vta/install.html#pynq-side-rpc-server-build-deployment">here</a> to
+launch TVM-based RPC servers on both boards. You should see the following output when starting the RPC server:</p>
+<pre><code>INFO:root:RPCServer: bind to 0.0.0.0:9091
 </code></pre>
 
-<ul>
-<li>Live Streaming  </li>
-</ul>
-<pre><code class="BASH">arecord --format=S16_LE --rate=16k -D sysdefault:CARD=1 | aplay --format=S16_LE --rate=16000
+<p>The RPC server should be listening on port <code>9091</code>.</p>
+<h3 id="local">Local</h3>
+<p>The following instructions apply to your local machine. CNN models are developed, compiled
+&amp; uploaded to PYNQ boards <em>from your local machine</em> via RPC.</p>
+<p>First, install TVM with LLVM enabled. Follow the instructions <a href="https://docs.tvm.ai/install/from_source.html">here</a>.</p>
+<p>Install the necessary python dependencies:</p>
+<pre><code>pip3 install --user numpy decorator attrs
 </code></pre>
 
-<ul>
-<li>
-<p>Testing Playback <code>speaker-test -t wav -c 2</code></p>
-</li>
-<li>
-<p>Test Recording Device  </p>
-</li>
-</ul>
-<pre><code>arecord --format=S16_LE --duration=5 --rate=16000 --file-type=raw out.raw
-aplay --format=S16_LE --rate=16000 out.raw
+<p>Next, you need to add a configuration file for VTA:</p>
+<pre><code>cd &lt;tvm root&gt;
+cp vta/config/pynq_sample.json vta/config/vta_config.json
 </code></pre>
 
+<p>When the TVM compiler compiles the convolutional operators in a neural network, it queries a log file to
+get the best knob parameters to achieve fast performance. Normally, for a particular network, this log file
+is generated using TVM's autotuning tool (<code>autotune.py</code>).</p>
+<p>However, since this tool seems to be broken, log file
+for <code>resnet18_v1_split</code> was manually created.</p>
+<p>Move this log file to where the compiler can find it:</p>
+<pre><code>cd &lt;project root&gt;
+cp vta_v0.05.log ~/.tvm/tophub/vta_v0.05.log
+</code></pre>
+
+<h2 id="usage">Usage</h2>
+<p>After setup has been complete on both the PYNQ and host end, you are
+now ready to deploy the split networks. <code>demo.py</code> is a minimal example that shows you how to do this.</p>
+<p>First, install additional Python dependencies:</p>
+<pre><code>pip3 install --user mxnet pillow
+</code></pre>
+
+<p>Then run the demo:</p>
+<pre><code>python3 demo.py [--cpu] [--nonsplit] [--i]
+</code></pre>
+
+<h3 id="options">Options:</h3>
 <ul>
-<li>Speaker and Mic Volume Control <code>alsamixer -c "card number"</code></li>
+<li>
+<p><code>--cpu</code> Run model on local machine instead of PYNQ boards.</p>
+</li>
+<li>
+<p><code>--nonsplit</code> Run the non-split version of the model.</p>
+</li>
+<li>
+<p><code>--i</code> Run the interactive version of the demo. This allows you to enter paths to image files to feed to model.</p>
+</li>
 </ul>
+<p>By default, the demo downloads 50 images of animals from Google Images, feeds them to the model, and reports the mean and standard deviation (in sec) of the inference delays. </p>
               
             </div>
           </div>
@@ -284,10 +305,10 @@ aplay --format=S16_LE --rate=16000 out.raw
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../../irobot/keyboard/" class="btn btn-neutral float-right" title="Keyboard">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../../getting-started/setting-up-pi/" class="btn btn-neutral float-right" title="Setting up pi">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../setting-up-pi/" class="btn btn-neutral" title="Setting up pi"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../camera/webcam/" class="btn btn-neutral" title="Webcam"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -313,10 +334,10 @@ aplay --format=S16_LE --rate=16000 out.raw
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../setting-up-pi/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../../camera/webcam/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../../irobot/keyboard/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../../getting-started/setting-up-pi/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

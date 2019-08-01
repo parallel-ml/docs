@@ -1,68 +1,132 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    
     <url>
-     <loc>None</loc>
-     <lastmod>2019-07-25</lastmod>
+     <loc>/</loc>
+     <lastmod>2019-08-01</lastmod>
      <changefreq>daily</changefreq>
     </url>
+    
+
+    
+        
     <url>
-     <loc>None</loc>
-     <lastmod>2019-07-25</lastmod>
+     <loc>/asplos2018/real-time/</loc>
+     <lastmod>2019-08-01</lastmod>
      <changefreq>daily</changefreq>
     </url>
+        
+    
+
+    
+        
     <url>
-     <loc>None</loc>
-     <lastmod>2019-07-25</lastmod>
+     <loc>/camera/picamera/</loc>
+     <lastmod>2019-08-01</lastmod>
      <changefreq>daily</changefreq>
     </url>
+        
     <url>
-     <loc>None</loc>
-     <lastmod>2019-07-25</lastmod>
+     <loc>/camera/webcam/</loc>
+     <lastmod>2019-08-01</lastmod>
      <changefreq>daily</changefreq>
     </url>
+        
+    
+
+    
+        
     <url>
-     <loc>None</loc>
-     <lastmod>2019-07-25</lastmod>
+     <loc>/fpga/splitnet/</loc>
+     <lastmod>2019-08-01</lastmod>
      <changefreq>daily</changefreq>
     </url>
+        
+    
+
+    
+        
     <url>
-     <loc>None</loc>
-     <lastmod>2019-07-25</lastmod>
+     <loc>/getting-started/setting-up-pi/</loc>
+     <lastmod>2019-08-01</lastmod>
      <changefreq>daily</changefreq>
     </url>
+        
     <url>
-     <loc>None</loc>
-     <lastmod>2019-07-25</lastmod>
+     <loc>/getting-started/speaker-mic/</loc>
+     <lastmod>2019-08-01</lastmod>
      <changefreq>daily</changefreq>
     </url>
+        
+    
+
+    
+        
     <url>
-     <loc>None</loc>
-     <lastmod>2019-07-25</lastmod>
+     <loc>/irobot/keyboard/</loc>
+     <lastmod>2019-08-01</lastmod>
      <changefreq>daily</changefreq>
     </url>
+        
     <url>
-     <loc>None</loc>
-     <lastmod>2019-07-25</lastmod>
+     <loc>/irobot/navi_lidar_voice/</loc>
+     <lastmod>2019-08-01</lastmod>
      <changefreq>daily</changefreq>
     </url>
+        
+    
+
+    
+        
     <url>
-     <loc>None</loc>
-     <lastmod>2019-07-25</lastmod>
+     <loc>/mapping/lidar-slam/</loc>
+     <lastmod>2019-08-01</lastmod>
      <changefreq>daily</changefreq>
     </url>
+        
+    
+
+    
+        
     <url>
-     <loc>None</loc>
-     <lastmod>2019-07-25</lastmod>
+     <loc>/people/people/</loc>
+     <lastmod>2019-08-01</lastmod>
      <changefreq>daily</changefreq>
     </url>
+        
+    
+
+    
+        
     <url>
-     <loc>None</loc>
-     <lastmod>2019-07-25</lastmod>
+     <loc>/speech/deepspeech/</loc>
+     <lastmod>2019-08-01</lastmod>
      <changefreq>daily</changefreq>
     </url>
+        
     <url>
-     <loc>None</loc>
-     <lastmod>2019-07-25</lastmod>
+     <loc>/speech/sphinx/</loc>
+     <lastmod>2019-08-01</lastmod>
      <changefreq>daily</changefreq>
     </url>
+        
+    <url>
+     <loc>/speech/text-to-speech/</loc>
+     <lastmod>2019-08-01</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>/vision/character/</loc>
+     <lastmod>2019-08-01</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
 </urlset>

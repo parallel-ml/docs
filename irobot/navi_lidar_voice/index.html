@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Speaker mic - distributed cloud ML</title>
+  <title>Navi lidar voice - distributed cloud ML</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Speaker mic";
-    var mkdocs_page_input_path = "getting-started/speaker-mic.md";
-    var mkdocs_page_url = "/getting-started/speaker-mic/";
+    var mkdocs_page_name = "Navi lidar voice";
+    var mkdocs_page_input_path = "irobot/navi_lidar_voice.md";
+    var mkdocs_page_url = "/irobot/navi_lidar_voice/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -95,17 +95,11 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../setting-up-pi/">Setting up pi</a>
+    <a class="" href="../../getting-started/setting-up-pi/">Setting up pi</a>
                 </li>
-                <li class=" current">
+                <li class="">
                     
-    <a class="current" href="./">Speaker mic</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#speaker-and-mic-setup">Speaker and Mic Setup</a></li>
-    
-
-    </ul>
+    <a class="" href="../../getting-started/speaker-mic/">Speaker mic</a>
                 </li>
     </ul>
 	    </li>
@@ -116,11 +110,14 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../../irobot/keyboard/">Keyboard</a>
+    <a class="" href="../keyboard/">Keyboard</a>
                 </li>
-                <li class="">
+                <li class=" current">
                     
-    <a class="" href="../../irobot/navi_lidar_voice/">Navi lidar voice</a>
+    <a class="current" href="./">Navi lidar voice</a>
+    <ul class="subnav">
+            
+    </ul>
                 </li>
     </ul>
 	    </li>
@@ -199,11 +196,11 @@
     
       
         
-          <li>Getting started &raquo;</li>
+          <li>Irobot &raquo;</li>
         
       
     
-    <li>Speaker mic</li>
+    <li>Navi lidar voice</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -213,70 +210,7 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="speaker-and-mic-setup">Speaker and Mic Setup</h1>
-<p>Author: Ramyad
-Date: 7/25/2019</p>
-<ul>
-<li>
-<p>List All devices: <code>cat /proc/asound/cards</code></p>
-</li>
-<li>
-<p>List all Playback Devices <code>aplay -l</code><br />
-  See your card and device number<br />
-  Note: you need to set volume <code>alsamixer -c &lt;card_number&gt;</code><br />
-  Note: you can also use <code>pacmd set-source-volume &lt;index&gt; &lt;volume&gt;</code></p>
-</li>
-<li>
-<p>List all Recording Devices <code>arecord -l</code> or <code>pacmd list-sources</code><br />
-    See your card and device number</p>
-</li>
-<li>
-<p>Control devices with <code>alsamixer</code>, use F6 to select your device:wq</p>
-</li>
-<li>
-<p>Set your Recording and Playback Device as the Default PCM Devices, in <code>/etc/asound.conf</code>  </p>
-</li>
-</ul>
-<pre><code>pcm.!default {
-  type asym
-  capture.pcm &quot;mic&quot;
-  playback.pcm &quot;speaker&quot;
-}
-pcm.mic {
-  type plug
-  slave {
-    pcm &quot;hw:&lt;card number&gt;,&lt;device number&gt;&quot;
-  }
-}
-pcm.speaker {
-  type plug
-  slave {
-    pcm &quot;hw:&lt;card number&gt;,&lt;device number&gt;&quot;
-  }
-}
-</code></pre>
-
-<ul>
-<li>Live Streaming  </li>
-</ul>
-<pre><code class="BASH">arecord --format=S16_LE --rate=16k -D sysdefault:CARD=1 | aplay --format=S16_LE --rate=16000
-</code></pre>
-
-<ul>
-<li>
-<p>Testing Playback <code>speaker-test -t wav -c 2</code></p>
-</li>
-<li>
-<p>Test Recording Device  </p>
-</li>
-</ul>
-<pre><code>arecord --format=S16_LE --duration=5 --rate=16000 --file-type=raw out.raw
-aplay --format=S16_LE --rate=16000 out.raw
-</code></pre>
-
-<ul>
-<li>Speaker and Mic Volume Control <code>alsamixer -c "card number"</code></li>
-</ul>
+                
               
             </div>
           </div>
@@ -284,10 +218,10 @@ aplay --format=S16_LE --rate=16000 out.raw
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../../irobot/keyboard/" class="btn btn-neutral float-right" title="Keyboard">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../../mapping/lidar-slam/" class="btn btn-neutral float-right" title="Lidar slam">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../setting-up-pi/" class="btn btn-neutral" title="Setting up pi"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../keyboard/" class="btn btn-neutral" title="Keyboard"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -313,10 +247,10 @@ aplay --format=S16_LE --rate=16000 out.raw
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../setting-up-pi/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../keyboard/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../../irobot/keyboard/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../../mapping/lidar-slam/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
