@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Setting Up Speaker and Mic - distributed cloud ML</title>
+  <title>Webcam Information - distributed cloud ML</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,8 +17,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Setting Up Speaker and Mic";
-    var mkdocs_page_input_path = "getting-started/speaker-mic.md";
+    var mkdocs_page_name = "Webcam Information";
+    var mkdocs_page_input_path = "visual_slam/webcam-information.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -59,17 +59,11 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../setting-up-pi/">Connecting to Raspberry Pi</a>
+    <a class="" href="../../getting-started/setting-up-pi/">Connecting to Raspberry Pi</a>
                 </li>
-                <li class=" current">
+                <li class="">
                     
-    <a class="current" href="./">Setting Up Speaker and Mic</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#speaker-and-mic-setup">Speaker and Mic Setup</a></li>
-    
-
-    </ul>
+    <a class="" href="../../getting-started/speaker-mic/">Setting Up Speaker and Mic</a>
                 </li>
     </ul>
 	    </li>
@@ -138,25 +132,39 @@
 		
     <span class="caption-text">Visual SLAM</span>
     <ul class="subnav">
-                <li class="">
+                <li class=" current">
                     
-    <a class="" href="../../visual_slam/webcam-information/">Webcam Information</a>
+    <a class="current" href="./">Webcam Information</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#webcam-information">Webcam Information</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#logitech-c270-webcam">Logitech C270 Webcam</a></li>
+        
+            <li><a class="toctree-l4" href="#minoru-3d-webcam-redchrome">Minoru 3D Webcam (Red/Chrome)</a></li>
+        
+        </ul>
+    
+
+    </ul>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../visual_slam/installing-docker-on-pi/">Installing Docker on the Raspberry Pi</a>
+    <a class="" href="../installing-docker-on-pi/">Installing Docker on the Raspberry Pi</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../visual_slam/live-streaming-pi-video/">Live Streaming Raspberry Pi Video</a>
+    <a class="" href="../live-streaming-pi-video/">Live Streaming Raspberry Pi Video</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../visual_slam/calibration/">Camera Calibration</a>
+    <a class="" href="../calibration/">Camera Calibration</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../visual_slam/running-slam/">Running SLAM</a>
+    <a class="" href="../running-slam/">Running SLAM</a>
                 </li>
     </ul>
 	    </li>
@@ -213,11 +221,11 @@
     
       
         
-          <li>Getting Started &raquo;</li>
+          <li>Visual SLAM &raquo;</li>
         
       
     
-    <li>Setting Up Speaker and Mic</li>
+    <li>Webcam Information</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -227,69 +235,25 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="speaker-and-mic-setup">Speaker and Mic Setup</h1>
-<p>Author: Ramyad
-Date: 7/25/2019</p>
+                <h1 id="webcam-information">Webcam Information</h1>
+<p>Below is a list of cameras we tried out.</p>
+<h2 id="logitech-c270-webcam">Logitech C270 Webcam</h2>
+<p>Amazon Link: https://www.amazon.com/Logitech-Desktop-Widescreen-Calling-Recording/dp/B004FHO5Y6/ref=sr_1_3?keywords=Logitech+C270+Webcam&amp;qid=1564694596&amp;s=electronics&amp;sr=1-3
+- Resolution: 1280x720
+- Pixel Size: 2.8um
+- Sensor Size: 3.58x2.02mm
+- Stock lens focal length: 4.2mm</p>
+<h2 id="minoru-3d-webcam-redchrome">Minoru 3D Webcam (Red/Chrome)</h2>
+<p>Amazon Link: https://www.amazon.com/gp/product/B001NXDGFY/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&amp;psc=1
+Specifications: https://www.minoru3d.com/</p>
 <ul>
-<li>
-<p>List All devices: <code>cat /proc/asound/cards</code></p>
-</li>
-<li>
-<p>List all Playback Devices <code>aplay -l</code><br />
-  See your card and device number<br />
-  Note: you need to set volume <code>alsamixer -c &lt;card_number&gt;</code><br />
-  Note: you can also use <code>pacmd set-source-volume &lt;index&gt; &lt;volume&gt;</code></p>
-</li>
-<li>
-<p>List all Recording Devices <code>arecord -l</code> or <code>pacmd list-sources</code><br />
-    See your card and device number</p>
-</li>
-<li>
-<p>Control devices with <code>alsamixer</code>, use F6 to select your device:wq</p>
-</li>
-<li>
-<p>Set your Recording and Playback Device as the Default PCM Devices, in <code>/etc/asound.conf</code>  </p>
-</li>
-</ul>
-<pre><code>pcm.!default {
-  type asym
-  capture.pcm &quot;mic&quot;
-  playback.pcm &quot;speaker&quot;
-}
-pcm.mic {
-  type plug
-  slave {
-    pcm &quot;hw:&lt;card number&gt;,&lt;device number&gt;&quot;
-  }
-}
-pcm.speaker {
-  type plug
-  slave {
-    pcm &quot;hw:&lt;card number&gt;,&lt;device number&gt;&quot;
-  }
-}
-</code></pre>
-
-<ul>
-<li>Live Streaming  </li>
-</ul>
-<pre><code class="BASH">arecord --format=S16_LE --rate=16k -D sysdefault:CARD=1 | aplay --format=S16_LE --rate=16000
-</code></pre>
-
-<ul>
-<li>
-<p>Testing Playback <code>speaker-test -t wav -c 2</code></p>
-</li>
-<li>
-<p>Test Recording Device  </p>
-</li>
-</ul>
-<pre><code>arecord --format=S16_LE --duration=5 --rate=16000 --file-type=raw out.raw
-aplay --format=S16_LE --rate=16000 out.raw
-</code></pre>
-
-<ul>
-<li>Speaker and Mic Volume Control <code>alsamixer -c "card number"</code></li>
+<li>VGA CMOS Sensor</li>
+<li>Maximum resolution 800×600</li>
+<li>Camera baseline length 6 cm</li>
+<li>Maximum frame rate 30 fps</li>
+<li>L/R shutters don’t synchronize(Max deviation 16.5 ms)</li>
+<li>Manual focus(from 10 cm to infinity)</li>
+<li>field angle 42 degrees (actual measurement)</li>
 </ul>
               
             </div>
@@ -298,10 +262,10 @@ aplay --format=S16_LE --rate=16000 out.raw
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../../camera/picamera/" class="btn btn-neutral float-right" title="Using the PiCamera">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../installing-docker-on-pi/" class="btn btn-neutral float-right" title="Installing Docker on the Raspberry Pi">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../setting-up-pi/" class="btn btn-neutral" title="Connecting to Raspberry Pi"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../mapping/lidar-slam/" class="btn btn-neutral" title="Lidar SLAM"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -327,10 +291,10 @@ aplay --format=S16_LE --rate=16000 out.raw
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../setting-up-pi/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../../mapping/lidar-slam/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../../camera/picamera/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../installing-docker-on-pi/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

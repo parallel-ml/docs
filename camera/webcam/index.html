@@ -8,23 +8,24 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Webcam - distributed cloud ML</title>
+  <title>Webcam video/image - distributed cloud ML</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../../css/highlight.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Webcam";
+    var mkdocs_page_name = "Webcam video/image";
     var mkdocs_page_input_path = "camera/webcam.md";
-    var mkdocs_page_url = "/camera/webcam/";
+    var mkdocs_page_url = null;
   </script>
   
-  <script src="../../js/jquery-2.1.1.min.js"></script>
-  <script src="../../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
 
@@ -38,7 +39,7 @@
         <a href="../.." class="icon icon-home"> distributed cloud ML</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -54,26 +55,30 @@
           
             <li class="toctree-l1">
 		
-    <span class="caption-text">Asplos2018</span>
+    <span class="caption-text">Getting Started</span>
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../../asplos2018/real-time/">Real time</a>
+    <a class="" href="../../getting-started/setting-up-pi/">Connecting to Raspberry Pi</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../getting-started/speaker-mic/">Setting Up Speaker and Mic</a>
                 </li>
     </ul>
 	    </li>
           
             <li class="toctree-l1">
 		
-    <span class="caption-text">Camera</span>
+    <span class="caption-text">Cameras</span>
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../picamera/">Picamera</a>
+    <a class="" href="../picamera/">Using the PiCamera</a>
                 </li>
                 <li class=" current">
                     
-    <a class="current" href="./">Webcam</a>
+    <a class="current" href="./">Webcam video/image</a>
     <ul class="subnav">
             
     <li class="toctree-l3"><a href="#webcam-videoimage">Webcam Video/Image</a></li>
@@ -86,70 +91,22 @@
           
             <li class="toctree-l1">
 		
-    <span class="caption-text">Fpga</span>
+    <span class="caption-text">Vision System</span>
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../../fpga/split-networks/">Split networks</a>
+    <a class="" href="../../vision/character/">Character Recognition</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../vision/lidar.md">LIDAR</a>
                 </li>
     </ul>
 	    </li>
           
             <li class="toctree-l1">
 		
-    <span class="caption-text">Getting started</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../../getting-started/setting-up-pi/">Setting up pi</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../getting-started/speaker-mic/">Speaker mic</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">Irobot</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../../irobot/keyboard/">Keyboard</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../irobot/navi_lidar_voice/">Navi lidar voice</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">Mapping</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../../mapping/lidar-slam/">Lidar slam</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">People</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../../people/people/">People</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">Speech</span>
+    <span class="caption-text">Speech Recognition</span>
     <ul class="subnav">
                 <li class="">
                     
@@ -161,20 +118,77 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../../speech/text-to-speech/">Text to speech</a>
+    <a class="" href="../../speech/text-to-speech/">Text to Speech</a>
                 </li>
     </ul>
 	    </li>
           
             <li class="toctree-l1">
 		
-    <span class="caption-text">Vision</span>
+    <span class="caption-text">Mapping</span>
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../../vision/character/">Character</a>
+    <a class="" href="../../mapping/lidar-slam/">Lidar SLAM</a>
                 </li>
     </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Visual SLAM</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../visual_slam/webcam-information/">Webcam Information</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../visual_slam/installing-docker-on-pi/">Installing Docker on the Raspberry Pi</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../visual_slam/live-streaming-pi-video/">Live Streaming Raspberry Pi Video</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../visual_slam/calibration/">Camera Calibration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../visual_slam/running-slam/">Running SLAM</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">iRobot</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../irobot/keyboard/">Keyboard Control</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../irobot/navi_lidar_voice/">Navigation with Lidar/Voice</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../asplos2018/real-time/">ASPLOS 2018</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../people/people/">People</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../fpga/splitnet.md">FPGA</a>
 	    </li>
           
         </ul>
@@ -199,11 +213,11 @@
     
       
         
-          <li>Camera &raquo;</li>
+          <li>Cameras &raquo;</li>
         
       
     
-    <li>Webcam</li>
+    <li>Webcam video/image</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -233,10 +247,10 @@ streamer -q -c /dev/video0 -f rgb24 -t 00:01:30 -r 10 -s 640x480 -o ~/outfile.av
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../../fpga/split-networks/" class="btn btn-neutral float-right" title="Split networks">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../../vision/character/" class="btn btn-neutral float-right" title="Character Recognition">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../picamera/" class="btn btn-neutral" title="Picamera"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../picamera/" class="btn btn-neutral" title="Using the PiCamera"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -250,12 +264,12 @@ streamer -q -c /dev/video0 -f rgb24 -t 00:01:30 -r 10 -s 640x480 -o ~/outfile.av
 
   Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-	  
+      
         </div>
       </div>
 
     </section>
-    
+
   </div>
 
   <div class="rst-versions" role="note" style="cursor: pointer">
@@ -265,11 +279,13 @@ streamer -q -c /dev/video0 -f rgb24 -t 00:01:30 -r 10 -s 640x480 -o ~/outfile.av
         <span><a href="../picamera/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../../fpga/split-networks/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../../vision/character/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
-    <script src="../../js/theme.js"></script>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
 
 </body>
 </html>

@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Setting Up Speaker and Mic - distributed cloud ML</title>
+  <title>Live Streaming Raspberry Pi Video - distributed cloud ML</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,8 +17,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Setting Up Speaker and Mic";
-    var mkdocs_page_input_path = "getting-started/speaker-mic.md";
+    var mkdocs_page_name = "Live Streaming Raspberry Pi Video";
+    var mkdocs_page_input_path = "visual_slam/live-streaming-pi-video.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -59,17 +59,11 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../setting-up-pi/">Connecting to Raspberry Pi</a>
+    <a class="" href="../../getting-started/setting-up-pi/">Connecting to Raspberry Pi</a>
                 </li>
-                <li class=" current">
+                <li class="">
                     
-    <a class="current" href="./">Setting Up Speaker and Mic</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#speaker-and-mic-setup">Speaker and Mic Setup</a></li>
-    
-
-    </ul>
+    <a class="" href="../../getting-started/speaker-mic/">Setting Up Speaker and Mic</a>
                 </li>
     </ul>
 	    </li>
@@ -140,23 +134,39 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../../visual_slam/webcam-information/">Webcam Information</a>
+    <a class="" href="../webcam-information/">Webcam Information</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../visual_slam/installing-docker-on-pi/">Installing Docker on the Raspberry Pi</a>
+    <a class="" href="../installing-docker-on-pi/">Installing Docker on the Raspberry Pi</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Live Streaming Raspberry Pi Video</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#live-stream-raspberry-pi-video-across-the-network">Live Stream Raspberry Pi Video Across the Network</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#using-a-usb-camera">Using a USB Camera</a></li>
+        
+            <li><a class="toctree-l4" href="#using-the-pi-camera-module">Using the Pi Camera Module</a></li>
+        
+            <li><a class="toctree-l4" href="#view-the-stream">View the Stream</a></li>
+        
+        </ul>
+    
+
+    </ul>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../visual_slam/live-streaming-pi-video/">Live Streaming Raspberry Pi Video</a>
+    <a class="" href="../calibration/">Camera Calibration</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../visual_slam/calibration/">Camera Calibration</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../visual_slam/running-slam/">Running SLAM</a>
+    <a class="" href="../running-slam/">Running SLAM</a>
                 </li>
     </ul>
 	    </li>
@@ -213,11 +223,11 @@
     
       
         
-          <li>Getting Started &raquo;</li>
+          <li>Visual SLAM &raquo;</li>
         
       
     
-    <li>Setting Up Speaker and Mic</li>
+    <li>Live Streaming Raspberry Pi Video</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -227,70 +237,38 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="speaker-and-mic-setup">Speaker and Mic Setup</h1>
-<p>Author: Ramyad
-Date: 7/25/2019</p>
-<ul>
-<li>
-<p>List All devices: <code>cat /proc/asound/cards</code></p>
-</li>
-<li>
-<p>List all Playback Devices <code>aplay -l</code><br />
-  See your card and device number<br />
-  Note: you need to set volume <code>alsamixer -c &lt;card_number&gt;</code><br />
-  Note: you can also use <code>pacmd set-source-volume &lt;index&gt; &lt;volume&gt;</code></p>
-</li>
-<li>
-<p>List all Recording Devices <code>arecord -l</code> or <code>pacmd list-sources</code><br />
-    See your card and device number</p>
-</li>
-<li>
-<p>Control devices with <code>alsamixer</code>, use F6 to select your device:wq</p>
-</li>
-<li>
-<p>Set your Recording and Playback Device as the Default PCM Devices, in <code>/etc/asound.conf</code>  </p>
-</li>
-</ul>
-<pre><code>pcm.!default {
-  type asym
-  capture.pcm &quot;mic&quot;
-  playback.pcm &quot;speaker&quot;
-}
-pcm.mic {
-  type plug
-  slave {
-    pcm &quot;hw:&lt;card number&gt;,&lt;device number&gt;&quot;
-  }
-}
-pcm.speaker {
-  type plug
-  slave {
-    pcm &quot;hw:&lt;card number&gt;,&lt;device number&gt;&quot;
-  }
-}
+                <h1 id="live-stream-raspberry-pi-video-across-the-network">Live Stream Raspberry Pi Video Across the Network</h1>
+<p>We have built, containerized, and uploaded the <code>mjpeg-streamer</code> program into the <code>nimashoghi/streamer</code> image. You can use this image to stream a mjpeg stream over HTTP.</p>
+<h2 id="using-a-usb-camera">Using a USB Camera</h2>
+<p>Run the <code>streamer</code> image with the <code>input_uvc</code> input plugin and the <code>output_http</code> output plugin.</p>
+<p><code>docker run -t -i --privileged -p 8080:8080 nimashoghi/streamer -i 'input_uvc.so --device /dev/video0' -o output_http.so</code></p>
+<p>Make sure to change <code>/dev/video0</code> to reflect the Linux device file path.</p>
+<p><a href="https://github.com/jacksonliam/mjpg-streamer/blob/master/mjpg-streamer-experimental/plugins/input_uvc/README.md">Settings for the <code>input_uvc</code> plugin are shown here.</a></p>
+<h3 id="stereo-cameras">Stereo Cameras</h3>
+<p>For stereo cameras, you can run two separate instances of the <code>nimashoghi/streamer</code> image.</p>
+<p>Example <code>docker-compose</code> configuration is shown below:</p>
+<pre><code class="yaml">version: &quot;3.1&quot;
+services:
+    video0:
+        image: nimashoghi/streamer
+        privileged: true
+        ports:
+            - &quot;8080:8080&quot;
+        command: -i 'input_uvc.so --device /dev/video0' -o output_http.so
+    video1:
+        image: nimashoghi/streamer
+        privileged: true
+        ports:
+            - &quot;8081:8080&quot;
+        command: -i 'input_uvc.so --device /dev/video1' -o output_http.so
 </code></pre>
 
-<ul>
-<li>Live Streaming  </li>
-</ul>
-<pre><code class="BASH">arecord --format=S16_LE --rate=16k -D sysdefault:CARD=1 | aplay --format=S16_LE --rate=16000
-</code></pre>
-
-<ul>
-<li>
-<p>Testing Playback <code>speaker-test -t wav -c 2</code></p>
-</li>
-<li>
-<p>Test Recording Device  </p>
-</li>
-</ul>
-<pre><code>arecord --format=S16_LE --duration=5 --rate=16000 --file-type=raw out.raw
-aplay --format=S16_LE --rate=16000 out.raw
-</code></pre>
-
-<ul>
-<li>Speaker and Mic Volume Control <code>alsamixer -c "card number"</code></li>
-</ul>
+<h2 id="using-the-pi-camera-module">Using the Pi Camera Module</h2>
+<p>Run the <code>streamer</code> image with the <code>input_raspicam</code> input plugin and the <code>output_http</code> output plugin.</p>
+<p><code>docker run -t -i --privileged -p 8080:8080 nimashoghi/streamer -i input_raspicam.so -o output_http.so</code></p>
+<p><a href="https://github.com/jacksonliam/mjpg-streamer/blob/master/mjpg-streamer-experimental/plugins/input_raspicam/README.md">Settings for the <code>input_raspicam</code> plugin are shown here.</a></p>
+<h2 id="view-the-stream">View the Stream</h2>
+<p>To view the stream, visit the URL <code>http://{RASPBERRY_PI_LOCAL_IP}:8080/?action=stream</code> in your browser. You can also open this network stream with VLC to record the stream as a <code>.avi</code> file.</p>
               
             </div>
           </div>
@@ -298,10 +276,10 @@ aplay --format=S16_LE --rate=16000 out.raw
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../../camera/picamera/" class="btn btn-neutral float-right" title="Using the PiCamera">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../calibration/" class="btn btn-neutral float-right" title="Camera Calibration">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../setting-up-pi/" class="btn btn-neutral" title="Connecting to Raspberry Pi"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../installing-docker-on-pi/" class="btn btn-neutral" title="Installing Docker on the Raspberry Pi"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -327,10 +305,10 @@ aplay --format=S16_LE --rate=16000 out.raw
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../setting-up-pi/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../installing-docker-on-pi/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../../camera/picamera/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../calibration/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

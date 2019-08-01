@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Setting Up Speaker and Mic - distributed cloud ML</title>
+  <title>Installing Docker on the Raspberry Pi - distributed cloud ML</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,8 +17,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Setting Up Speaker and Mic";
-    var mkdocs_page_input_path = "getting-started/speaker-mic.md";
+    var mkdocs_page_name = "Installing Docker on the Raspberry Pi";
+    var mkdocs_page_input_path = "visual_slam/installing-docker-on-pi.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -59,17 +59,11 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../setting-up-pi/">Connecting to Raspberry Pi</a>
+    <a class="" href="../../getting-started/setting-up-pi/">Connecting to Raspberry Pi</a>
                 </li>
-                <li class=" current">
+                <li class="">
                     
-    <a class="current" href="./">Setting Up Speaker and Mic</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#speaker-and-mic-setup">Speaker and Mic Setup</a></li>
-    
-
-    </ul>
+    <a class="" href="../../getting-started/speaker-mic/">Setting Up Speaker and Mic</a>
                 </li>
     </ul>
 	    </li>
@@ -140,23 +134,41 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../../visual_slam/webcam-information/">Webcam Information</a>
+    <a class="" href="../webcam-information/">Webcam Information</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Installing Docker on the Raspberry Pi</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#installing-docker-on-the-raspberry-pi">Installing Docker on the Raspberry Pi</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#preparing-enironment">Preparing Enironment</a></li>
+        
+            <li><a class="toctree-l4" href="#installing-docker">Installing Docker</a></li>
+        
+            <li><a class="toctree-l4" href="#installing-docker-compose">Installing docker-compose</a></li>
+        
+            <li><a class="toctree-l4" href="#other-resources">Other resources</a></li>
+        
+        </ul>
+    
+
+    </ul>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../visual_slam/installing-docker-on-pi/">Installing Docker on the Raspberry Pi</a>
+    <a class="" href="../live-streaming-pi-video/">Live Streaming Raspberry Pi Video</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../visual_slam/live-streaming-pi-video/">Live Streaming Raspberry Pi Video</a>
+    <a class="" href="../calibration/">Camera Calibration</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../visual_slam/calibration/">Camera Calibration</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../visual_slam/running-slam/">Running SLAM</a>
+    <a class="" href="../running-slam/">Running SLAM</a>
                 </li>
     </ul>
 	    </li>
@@ -213,11 +225,11 @@
     
       
         
-          <li>Getting Started &raquo;</li>
+          <li>Visual SLAM &raquo;</li>
         
       
     
-    <li>Setting Up Speaker and Mic</li>
+    <li>Installing Docker on the Raspberry Pi</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -227,69 +239,21 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="speaker-and-mic-setup">Speaker and Mic Setup</h1>
-<p>Author: Ramyad
-Date: 7/25/2019</p>
+                <h1 id="installing-docker-on-the-raspberry-pi">Installing Docker on the Raspberry Pi</h1>
+<p>This document goes through the installation prcess for docker and coker-compose on the Raspberry Pi.</p>
+<h2 id="preparing-enironment">Preparing Enironment</h2>
+<p>Run the following command in your terminal:</p>
+<p><code>sudo apt-get install -y build-essential libssl-dev libffi-dev</code></p>
+<h2 id="installing-docker">Installing Docker</h2>
+<p>Run the following command in your terminal:</p>
+<p><code>curl -sSL https://get.docker.com | sudo sh &amp;&amp; sudo usermod -aG docker pi</code></p>
+<h2 id="installing-docker-compose">Installing docker-compose</h2>
+<p>Run the following command in your terminal:</p>
+<p><code>sudo apt-get -y install python-setuptools &amp;&amp; sudo easy_install pip &amp;&amp; sudo pip install docker-compose</code></p>
+<h2 id="other-resources">Other resources</h2>
 <ul>
-<li>
-<p>List All devices: <code>cat /proc/asound/cards</code></p>
-</li>
-<li>
-<p>List all Playback Devices <code>aplay -l</code><br />
-  See your card and device number<br />
-  Note: you need to set volume <code>alsamixer -c &lt;card_number&gt;</code><br />
-  Note: you can also use <code>pacmd set-source-volume &lt;index&gt; &lt;volume&gt;</code></p>
-</li>
-<li>
-<p>List all Recording Devices <code>arecord -l</code> or <code>pacmd list-sources</code><br />
-    See your card and device number</p>
-</li>
-<li>
-<p>Control devices with <code>alsamixer</code>, use F6 to select your device:wq</p>
-</li>
-<li>
-<p>Set your Recording and Playback Device as the Default PCM Devices, in <code>/etc/asound.conf</code>  </p>
-</li>
-</ul>
-<pre><code>pcm.!default {
-  type asym
-  capture.pcm &quot;mic&quot;
-  playback.pcm &quot;speaker&quot;
-}
-pcm.mic {
-  type plug
-  slave {
-    pcm &quot;hw:&lt;card number&gt;,&lt;device number&gt;&quot;
-  }
-}
-pcm.speaker {
-  type plug
-  slave {
-    pcm &quot;hw:&lt;card number&gt;,&lt;device number&gt;&quot;
-  }
-}
-</code></pre>
-
-<ul>
-<li>Live Streaming  </li>
-</ul>
-<pre><code class="BASH">arecord --format=S16_LE --rate=16k -D sysdefault:CARD=1 | aplay --format=S16_LE --rate=16000
-</code></pre>
-
-<ul>
-<li>
-<p>Testing Playback <code>speaker-test -t wav -c 2</code></p>
-</li>
-<li>
-<p>Test Recording Device  </p>
-</li>
-</ul>
-<pre><code>arecord --format=S16_LE --duration=5 --rate=16000 --file-type=raw out.raw
-aplay --format=S16_LE --rate=16000 out.raw
-</code></pre>
-
-<ul>
-<li>Speaker and Mic Volume Control <code>alsamixer -c "card number"</code></li>
+<li>https://howchoo.com/g/nmrlzmq1ymn/how-to-install-docker-on-your-raspberry-pi</li>
+<li>https://stevenbreuls.com/2019/01/install-docker-on-raspberry-pi/</li>
 </ul>
               
             </div>
@@ -298,10 +262,10 @@ aplay --format=S16_LE --rate=16000 out.raw
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../../camera/picamera/" class="btn btn-neutral float-right" title="Using the PiCamera">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../live-streaming-pi-video/" class="btn btn-neutral float-right" title="Live Streaming Raspberry Pi Video">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../setting-up-pi/" class="btn btn-neutral" title="Connecting to Raspberry Pi"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../webcam-information/" class="btn btn-neutral" title="Webcam Information"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -327,10 +291,10 @@ aplay --format=S16_LE --rate=16000 out.raw
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../setting-up-pi/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../webcam-information/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../../camera/picamera/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../live-streaming-pi-video/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
