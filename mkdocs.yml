@@ -16,6 +16,12 @@ nav:
         - Text to Speech: speech/text-to-speech.md
     - Mapping:
         - Lidar SLAM: mapping/lidar-slam.md
+    - Visual SLAM:
+        - Webcam Information: visual_slam/webcam-information.md
+        - Installing Docker on the Raspberry Pi: visual_slam/installing-docker-on-pi.md
+        - Live Streaming Raspberry Pi Video: visual_slam/live-streaming-pi-video.md
+        - Camera Calibration: visual_slam/calibration.md
+        - Running SLAM: visual_slam/running-slam.md
     - iRobot:
         - Keyboard Control: irobot/keyboard.md
         - Navigation with Lidar/Voice: irobot/navi_lidar_voice.md
