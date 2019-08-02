@@ -25,7 +25,7 @@ nav:
     - iRobot:
         - Keyboard Control: irobot/keyboard.md
         - Navigation with Lidar/Voice: irobot/navi_lidar_voice.md
+    - FPGA: fpga/split-networks.md
     - ASPLOS 2018: asplos2018/real-time.md
     - People: people/people.md
-    - FPGA: fpga/splitnet.md
 theme: readthedocs
