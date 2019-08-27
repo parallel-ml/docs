@@ -97,10 +97,6 @@
 
     </ul>
                 </li>
-                <li class="">
-                    
-    <a class="" href="../lidar.md">LIDAR</a>
-                </li>
     </ul>
 	    </li>
           
@@ -129,7 +125,7 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../../mapping/lidar-slam/">Lidar SLAM</a>
+    <a class="" href="../../mapping/lidar.md">Lidar</a>
                 </li>
     </ul>
 	    </li>
@@ -228,6 +224,19 @@
             <div class="section">
               
                 <h1 id="character-recognition">Character Recognition</h1>
+<p>Authors: Akanksha
+Date: 8/01/2019</p>
+<p>1) Introduction related to the domain area of the project</p>
+<p>Our project is an extended work on the blooming Computer Vision which was related to the implementation of a version of autonomous robot using Roomba with Raspberry PIs.  We implement a system capable of accounting for different characters present in an image, specially room numbers. We have used the MNIST dataset for this purpose.</p>
+<p>2) Literature Survey/background search/study of similar projects</p>
+<p>We have gone through similar projects in each module (i.e text detection, word segmentation and character prediction).After going through various links, implementing one, getting stuck in between and figuring out other ways as to how to get rid of the errors, we finally went with East text detector for the detection of text from an image which was further followed by segmentation and prediction.</p>
+<p>3) Project</p>
+<p>Code can be found here: https://github.com/parallel-ml/wordSegmentation</p>
+<p>Diagram:</p>
+<p>Input Image -&gt; Text Detection -&gt; Word Segmentation -&gt; Characters with Bounding Boxes -&gt; Predicted Output</p>
+<p>4) References</p>
+<p>https://github.com/EN10/KerasMNIST
+https://www.pyimagesearch.com/2018/08/20/opencv-text-detection-east-text-detector/</p>
               
             </div>
           </div>
