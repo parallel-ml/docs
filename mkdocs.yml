@@ -9,13 +9,12 @@ nav:
         - Webcam video/image: camera/webcam.md
     - Vision System:
         - Character Recognition: vision/character.md
-        - LIDAR: vision/lidar.md
     - Speech Recognition:
         - Deepspeech: speech/deepspeech.md
         - Sphinx: speech/sphinx.md
         - Text to Speech: speech/text-to-speech.md
     - Mapping:
-        - Lidar SLAM: mapping/lidar-slam.md
+        - Lidar: mapping/lidar.md
     - Visual SLAM:
         - Webcam Information: visual_slam/webcam-information.md
         - Installing Docker on the Raspberry Pi: visual_slam/installing-docker-on-pi.md
