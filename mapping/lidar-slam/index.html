@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Template - Lidar SLAM - distributed cloud ML</title>
+  <title>Lidar slam - distributed cloud ML</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,7 +17,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Template - Lidar SLAM";
+    var mkdocs_page_name = "Lidar slam";
     var mkdocs_page_input_path = "mapping/lidar-slam.md";
     var mkdocs_page_url = null;
   </script>
@@ -203,7 +203,7 @@
     
       
     
-    <li>Template - Lidar SLAM</li>
+    <li>Lidar slam</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -213,7 +213,35 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="template-lidar-slam">Template - Lidar SLAM</h1>
+                <h2 id="requirements">Requirements</h2>
+<ul>
+<li><a href="https://github.com/simondlevy/BreezySLAM">BreezySLAM</a></li>
+<li><a href="https://github.com/simondlevy/PyRoboViz">PyRoboViz</a></li>
+<li>Python 3 </li>
+<li>Operating System -Ubuntu (18.04)<ul>
+<li>Does not work with <strong>Windows</strong></li>
+</ul>
+</li>
+</ul>
+<h2 id="installation">Installation</h2>
+<ul>
+<li>Clone or Download the above git repository </li>
+<li>cd to <strong>BreezySLAM/python</strong> and run the following command</li>
+<li><code>$ sudo python3 setup.py install</code>    </li>
+<li>For installing the rplidar python package run the following pip command </li>
+<li><code>$ sudo pip3 install rplidar</code></li>
+<li>For seeing the live animation of the map, we install PyRoboViz<ul>
+<li>cd to <strong>PyRoboViz</strong> folder and run the following command
+  <code>sudo python3 setup.py install</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="running-slam">Running Slam</h2>
+<ul>
+<li>Connect the lidar to the system via a USB port and run the following command in the terminal
+<code>sudo chmod 666 /dev/ttyUSB0</code></li>
+<li>From the <strong>BreezySLAM/examples</strong> folder run the rpslam .py file to get live map of the surrounding.</li>
+</ul>
               
             </div>
           </div>
