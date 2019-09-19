@@ -15,7 +15,7 @@ sudo reboot
 
 Then, we need  to connect the GPS module to the Raspberry PI. There are only 4 wires (F to F), so it's a simple connection. Use https://pinout.xyz/ if you don't know the numbering.
 
-Neo-6M RPI:
+Neo-6M RPI:  
   - VCC to Pin 1, which is 3.3v
   - TX to Pin 10, which is RX (GPIO15)
   - RX to Pin 8, Which is TX (GPIO14)
@@ -46,7 +46,7 @@ sudo cgps -s
 ```
 
 
-References:
+References:  
   - https://www.xarg.org/2016/06/neo6mv2-gps-module-with-raspberry-pi/
   - https://www.instructables.com/id/Raspberry-Pi-the-Neo-6M-GPS/
   - https://www.raspberrypi.org/forums/viewtopic.php?t=180348
