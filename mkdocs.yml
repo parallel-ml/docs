@@ -7,6 +7,8 @@ nav:
     - Cameras:
         - Using the PiCamera: camera/picamera.md
         - Webcam video/image: camera/webcam.md
+    - IMU (GPS, Accelerometer):
+        - GPS (Neo 6M GPS): imu/gps.md
     - Vision System:
         - Character Recognition: vision/character.md
     - Speech Recognition:
