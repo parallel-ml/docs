@@ -9,6 +9,7 @@ nav:
         - Webcam video/image: camera/webcam.md
     - IMU (GPS, Accelerometer):
         - GPS (Neo 6M GPS): imu/gps.md
+        - IMU (Berry IMU): imu/imu.md
     - Vision System:
         - Character Recognition: vision/character.md
     - Speech Recognition:
