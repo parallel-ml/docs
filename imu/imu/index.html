@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>GPS (Neo 6M GPS) - distributed cloud ML</title>
+  <title>IMU (Berry IMU) - distributed cloud ML</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,8 +17,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "GPS (Neo 6M GPS)";
-    var mkdocs_page_input_path = "imu/gps.md";
+    var mkdocs_page_name = "IMU (Berry IMU)";
+    var mkdocs_page_input_path = "imu/imu.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -87,27 +87,16 @@
 		
     <span class="caption-text">IMU (GPS, Accelerometer)</span>
     <ul class="subnav">
-                <li class=" current">
-                    
-    <a class="current" href="./">GPS (Neo 6M GPS)</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#neo-6m-gps">NEO 6M GPS</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l4" href="#setup">Setup</a></li>
-        
-            <li><a class="toctree-l4" href="#for-terminal-output">For Terminal Output</a></li>
-        
-        </ul>
-    
-
-    </ul>
-                </li>
                 <li class="">
                     
-    <a class="" href="../imu/">IMU (Berry IMU)</a>
+    <a class="" href="../gps/">GPS (Neo 6M GPS)</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">IMU (Berry IMU)</a>
+    <ul class="subnav">
+            
+    </ul>
                 </li>
     </ul>
 	    </li>
@@ -236,7 +225,7 @@
         
       
     
-    <li>GPS (Neo 6M GPS)</li>
+    <li>IMU (Berry IMU)</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -246,47 +235,8 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="neo-6m-gps">NEO 6M GPS</h1>
-<h2 id="setup">Setup</h2>
-<p>Raspberry PI uses the UART interface as a serial console by default. We have to deactivate this first! Connect to the PI and run:</p>
-<pre><code>sudo raspi-config
-</code></pre>
-
-<p>Option 5, P6 (Serial), No, Yes</p>
-<pre><code>sudo reboot
-</code></pre>
-
-<p>Then, we need  to connect the GPS module to the Raspberry PI. There are only 4 wires (F to F), so it's a simple connection. Use https://pinout.xyz/ if you don't know the numbering.</p>
-<p>Neo-6M RPI:<br />
-    - VCC to Pin 1, which is 3.3v
-    - TX to Pin 10, which is RX (GPIO15)
-    - RX to Pin 8, Which is TX (GPIO14)
-    - Gnd to Pin 6, which is Gnd</p>
-<pre><code>sudo killall gpsd
-sudo gpsd /dev/serial0 -F /var/run/gpsd.sock
-sudo cat /dev/serial0
-</code></pre>
-
-<p>You should be able to see some messages:</p>
-<pre><code>$GPRMC,,V,,,,,,,,,,N*53
-$GPVTG,,,,,,,,,N*30
-$GPGGA,,,,,,0,00,99.99,,,,,,*48
-$GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30
-$GPGSV,1,1,01,02,,,20*78
-</code></pre>
-
-<h2 id="for-terminal-output">For Terminal Output</h2>
-<p>Then, run:</p>
-<pre><code>sudo gpsmon /dev/serial0
-or
-sudo cgps -s
-</code></pre>
-
-<p>References:<br />
-    - https://www.xarg.org/2016/06/neo6mv2-gps-module-with-raspberry-pi/
-    - https://www.instructables.com/id/Raspberry-Pi-the-Neo-6M-GPS/
-    - https://www.raspberrypi.org/forums/viewtopic.php?t=180348
-    - https://raspberrypi.stackexchange.com/questions/88916/getting-nmea-unknown-msg58-and-other-garbage-from-my-neo-6m-0-001-gps-module</p>
+                <p>You can find every guide and how to connect to RPi <a href="http://ozzmaker.com/product/berryimu-accelerometer-gyroscope-magnetometer-barometricaltitude-sensor/">here</a></p>
+<p><a href="http://ozzmaker.com/berryimu/">Here</a> is the first tutorial on how to use Gyro and Accelerometer.</p>
               
             </div>
           </div>
@@ -294,10 +244,10 @@ sudo cgps -s
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../imu/" class="btn btn-neutral float-right" title="IMU (Berry IMU)">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../../vision/character/" class="btn btn-neutral float-right" title="Character Recognition">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../../camera/webcam/" class="btn btn-neutral" title="Webcam video/image"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../gps/" class="btn btn-neutral" title="GPS (Neo 6M GPS)"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -323,10 +273,10 @@ sudo cgps -s
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../../camera/webcam/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../gps/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../imu/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../../vision/character/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
