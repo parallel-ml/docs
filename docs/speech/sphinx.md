@@ -1,15 +1,31 @@
 # CMU Sphinx
 Authors: Ramyad, Sayuj  
 Date: 7/25/2019
+# Set-Up (Fast)
 
-Fast Setup:
+**Prerequisites:**
+- Python 2.7
+- Numpy
+- Ubuntu-Based OS (Ubuntu, PopOS...)
+
 ```
-git clone https://github.com/parallel-ml/sphinxSpeech2Text
-./install.sh
-make
-./decode
+$ git clone https://github.com/parallel-ml/sphinxSpeech2Text
+$ cd ./sphinxSpeech2Text
+$ sudo chmod u+x ./install.sh
+$ ./install.sh
 ```
 
+Before compiling the C code, open up a text-editor and update the paths on lines 11 and 13 of `./decode.c` to point to the sphinxSpeech2Text repository you cloned.
+
+You might need to edit line 12 and the `arecord` command parameters to match your environment (such as changing the recording device)
+
+```
+$ make
+```
+
+You now have compiled the code. A demo can be run via
+`./decode`. It will record your voice for 5 seconds, filter the noise, and try to parse commands from the limited corpus. The output text can be found in the `/output` folder and the raw and filtered recordings can be found in the `/testfiles` folder.
+# Details
 Parallel-ml repo: [https://github.com/parallel-ml/sphinxSpeech2Text](https://github.com/parallel-ml/sphinxSpeech2Text)
 
 I used the pocketsphinx to decode the audio files on the raspberry pi’s. I installed it on the raspberry pi by following these instructions: [link](https://cmusphinx.github.io/wiki/tutorialpocketsphinx/#installation-on-unix-system)
