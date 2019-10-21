@@ -8,6 +8,7 @@ Date: 7/25/2019
 - Numpy
 - Ubuntu-Based OS (Ubuntu, PopOS...)
 
+**Clone and install dependencies:**
 ```
 $ git clone https://github.com/parallel-ml/sphinxSpeech2Text
 $ cd ./sphinxSpeech2Text
@@ -15,13 +16,20 @@ $ sudo chmod u+x ./install.sh
 $ ./install.sh
 ```
 
-Before compiling the C code, open up a text-editor and update the paths on lines 11 and 13 of `./decode.c` to point to the sphinxSpeech2Text repository you cloned.
+**Before compiling the C code:**
+- You might need to edit line 12 and the `arecord` command parameters to match your environment (such as changing the recording device)
 
-You might need to edit line 12 and the `arecord` command parameters to match your environment (such as changing the recording device)
 
+**Compile**:
 ```
 $ make
 ```
+
+**Before you can run the code:**
+- Set the `SPEECH_RECOGNITION` environment variable to point to the repository. For instance, if you cloned the repository into `~`, then
+the `SPEECH_RECOGNITION` environment variable should be set to `~/sphinxSpeech2Text`
+
+**Running the code:**
 
 You now have compiled the code. A demo can be run via
 `./decode`. It will record your voice for 5 seconds, filter the noise, and try to parse commands from the limited corpus. The output text can be found in the `/output` folder and the raw and filtered recordings can be found in the `/testfiles` folder.
