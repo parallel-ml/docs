@@ -1,5 +1,5 @@
 # CMU Sphinx
-Authors: Ramyad, Sayuj  
+Authors: Ramyad, Sayuj (Updated by Bryce Plunkett; Fall 2019) 
 Date: 7/25/2019
 # Set-Up (Fast)
 
