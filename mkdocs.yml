@@ -30,4 +30,5 @@ nav:
     - FPGA: fpga/split-networks.md
     - ASPLOS 2018: asplos2018/real-time.md
     - People: people/people.md
+    - Adhoc Network: adhoc/adhoc.md
 theme: readthedocs
