@@ -284,7 +284,9 @@ Have batman-adv startup automatically on boot:<br />
 <code>echo 'batman-adv' | sudo tee --append /etc/modules</code><br />
 Prevent DHCPCD from automatically configuring wlan0:<br />
 <code>echo 'denyinterfaces wlan0' | sudo tee --append /etc/dhcpcd.conf</code><br />
-Enable interfaces on boot:<br />
+Now, go back to home:<br />
+<code>cd</code><br />
+And enable interfaces on boot:<br />
 <code>echo "$(pwd)/start-batman-adv.sh" &gt;&gt; ~/.bashrc</code>  </p>
 <p>Now, reboot:<br />
 <code>sudo reboot</code></p>
