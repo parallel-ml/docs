@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Camera Calibration - distributed cloud ML</title>
+  <title>Creating an ad hoc node with a Raspberry Pi - distributed cloud ML</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,8 +17,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Camera Calibration";
-    var mkdocs_page_input_path = "visual_slam\\calibration.md";
+    var mkdocs_page_name = "Creating an ad hoc node with a Raspberry Pi";
+    var mkdocs_page_input_path = "adhoc\\adhoc.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -145,35 +145,23 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../webcam-information/">Webcam Information</a>
+    <a class="" href="../../visual_slam/webcam-information/">Webcam Information</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../installing-docker-on-pi/">Installing Docker on the Raspberry Pi</a>
+    <a class="" href="../../visual_slam/installing-docker-on-pi/">Installing Docker on the Raspberry Pi</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../live-streaming-pi-video/">Live Streaming Raspberry Pi Video</a>
-                </li>
-                <li class=" current">
-                    
-    <a class="current" href="./">Camera Calibration</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#camera-calibration">Camera Calibration</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l4" href="#calibration">Calibration</a></li>
-        
-        </ul>
-    
-
-    </ul>
+    <a class="" href="../../visual_slam/live-streaming-pi-video/">Live Streaming Raspberry Pi Video</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../running-slam/">Running SLAM</a>
+    <a class="" href="../../visual_slam/calibration/">Camera Calibration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../visual_slam/running-slam/">Running SLAM</a>
                 </li>
     </ul>
 	    </li>
@@ -229,12 +217,8 @@
     <li><a href="../..">Docs</a> &raquo;</li>
     
       
-        
-          <li>Visual SLAM &raquo;</li>
-        
-      
     
-    <li>Camera Calibration</li>
+    <li>Creating an ad hoc node with a Raspberry Pi</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -244,57 +228,63 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="camera-calibration">Camera Calibration</h1>
-<p>The cameras that we use will have some distortion. Calibration is the process of figuring out and undoing this distortion. The process is more involved with stereo cameras.</p>
-<p>For our purposes, we have created a <code>calibration</code> docker image</p>
-<h2 id="calibration">Calibration</h2>
-<p>To calibrate your camera, you can use the <code>nimashoghi/calibration</code> Docker image. Use the <code>./calibration</code> command for mono calibration and <code>./calibration_stereo</code> for stereo calibration.</p>
-<h3 id="monocular-calibraion">Monocular Calibraion</h3>
-<p>Below is the <code>docker-compose.yml</code> file for mono calibration:</p>
-<pre><code class="yaml">version: &quot;3.1&quot;
-services:
-    calibration_mono:
-        image: nimashoghi/calibration
-        environment:
-            - DISPLAY=192.168.0.113:0.0
-        volumes:
-            - &quot;./calib/:/output&quot;
-            - &quot;./assets/config.xml:/app/assets/config.xml&quot;
+                <h1 id="creating-an-ad-hoc-node-with-a-raspberry-pi">Creating an ad hoc node with a Raspberry Pi</h1>
+<p>Create a script for setting up the interfaces on boot<br />
+<code>cd ~ &amp;&amp; touch start-batman-adv.sh &amp;&amp; chmod +x start-batman-adv.sh</code><br />
+Then:<br />
+<code>sudo nano start-batman-adv.sh</code></p>
+<p>And write this in the file:</p>
+<pre><code>#!/bin/bash
+# Tell batman-adv which interface to use
+sudo batctl if add wlan0
+# Activates the interfaces for batman-adv
+sudo ifconfig wlan0 up
+sudo ifconfig bat0 up # bat0 is created via the first command 
 </code></pre>
 
-<h3 id="stereo-calibraion">Stereo Calibraion</h3>
-<p>Below is the <code>docker-compose.yml</code> file for stereo calibration:</p>
-<pre><code class="yaml">version: &quot;3.1&quot;
-services:
-    monocular:
-        image: nimashoghi/calibration
-        environment:
-            - DISPLAY=192.168.0.114:0.0
-        volumes:
-            - &quot;./calib_stereo/:/output&quot;
-            - &quot;./assets/:/app/assets/&quot;
-            - &quot;../snapshots/output/:/app/assets/stereo_input/&quot;
-        command: ./calibration_stereo /app/assets/stereo_calib.xml
+<p>Now, create two files in /etc/network/interfaces.d called bat0 and wlan0:<br />
+<code>cd /etc/network/interfaces.d</code></p>
+<p>Backup your current wlan0:<br />
+<code>sudo cp wlan0 wlan0.old</code></p>
+<p>Then write in the wlan0 file:<br />
+<code>sudo nano wlan0</code></p>
+<p>And put this:</p>
+<pre><code>auto wlan0
+iface wlan0 inet manual
+   mtu 1532
+   wireless-channel 3
+   wireless-essid meshPi
+   wireless-mode ad-hoc
+   wireless-ap 02:12:34:56:78:9A
 </code></pre>
 
-<h3 id="other-resources">Other resources</h3>
-<ul>
-<li><a href="https://docs.opencv.org/2.4/doc/tutorials/calib3d/camera_calibration/camera_calibration.html">Camera calibration With OpenCV</a></li>
-<li><a href="https://docs.opencv.org/2.4/modules/calib3d/doc/camera_calibration_and_3d_reconstruction.html">Camera Calibration and 3D Reconstruction</a></li>
-</ul>
+<p>Then create and write the bat0 file:<br />
+<code>sudo nano bat0</code></p>
+<p>And write:</p>
+<pre><code>auto bat0
+iface bat0 inet auto
+   pre-up /usr/sbin/batctl if add wlan0
+</code></pre>
+
+<p>Now, install batman-adv:<br />
+<code>sudo apt-get install -y batctl</code></p>
+<p>And do the following: 
+Have batman-adv startup automatically on boot:<br />
+<code>echo 'batman-adv' | sudo tee --append /etc/modules</code><br />
+Prevent DHCPCD from automatically configuring wlan0:<br />
+<code>echo 'denyinterfaces wlan0' | sudo tee --append /etc/dhcpcd.conf</code><br />
+Enable interfaces on boot:<br />
+<code>echo "$(pwd)/start-batman-adv.sh" &gt;&gt; ~/.bashrc</code>  </p>
+<p>Now, reboot:<br />
+<code>sudo reboot</code></p>
+<p>Test if it worked (you should see “wlan0: active”):<br />
+<code>sudo batctl if</code></p>
+<p>Source:<br />
+https://medium.com/@tdoll/how-to-setup-a-raspberry-pi-ad-hoc-network-using-batman-adv-on-raspbian-stretch-lite-dce6eb896687</p>
               
             </div>
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../running-slam/" class="btn btn-neutral float-right" title="Running SLAM">Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
-        <a href="../live-streaming-pi-video/" class="btn btn-neutral" title="Live Streaming Raspberry Pi Video"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>
@@ -318,10 +308,6 @@ services:
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../live-streaming-pi-video/" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      
-      
-        <span style="margin-left: 15px"><a href="../running-slam/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

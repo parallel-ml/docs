@@ -18,7 +18,7 @@
   <script>
     // Current page data
     var mkdocs_page_name = "ASPLOS 2018";
-    var mkdocs_page_input_path = "asplos2018/real-time.md";
+    var mkdocs_page_input_path = "asplos2018\\real-time.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -272,8 +272,8 @@ model inference. </p>
 <h3 id="single-device-gpu-and-cpu">Single device (GPU and CPU).</h3>
 <p><em>(This is NVidia Jetson TX2 version in our paper)</em></p>
 <p>Dependencies:
-<em> tensorflow-gpu &gt;= 1.5.0
-</em> Keras &gt;= 2.1.3</p>
+* tensorflow-gpu &gt;= 1.5.0
+* Keras &gt;= 2.1.3</p>
 <pre><code class="angular2html">pip install keras
 </code></pre>
 
@@ -281,8 +281,8 @@ model inference. </p>
 <h3 id="multiple-devices-cpu-and-rpc">Multiple devices (CPU and RPC).</h3>
 <p><em>(This is Raspberry PI 3 versions in our paper)</em></p>
 <p>Dependencies:
-<em> tensorflow &gt;= 1.5.0
-</em> Keras &gt;= 2.1.3
+* tensorflow &gt;= 1.5.0
+* Keras &gt;= 2.1.3
 * avro &gt;= 1.8.2</p>
 <p>We have provided dependency file here. You can execute this file to install packages.</p>
 <pre><code class="angular2html">pip install -r requirements.txt
