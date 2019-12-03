@@ -41,6 +41,7 @@ auto bat0
 iface bat0 inet auto
    pre-up /usr/sbin/batctl if add wlan0
 ```
+
 Now, install batman-adv:  
 `sudo apt-get install -y batctl`
 
@@ -49,7 +50,9 @@ Have batman-adv startup automatically on boot:
 `echo 'batman-adv' | sudo tee --append /etc/modules`  
 Prevent DHCPCD from automatically configuring wlan0:  
 `echo 'denyinterfaces wlan0' | sudo tee --append /etc/dhcpcd.conf`  
-Enable interfaces on boot:  
+Now, go back to home:  
+`cd`  
+And enable interfaces on boot:  
 `echo "$(pwd)/start-batman-adv.sh" >> ~/.bashrc`  
 
 Now, reboot:  
