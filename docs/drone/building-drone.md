@@ -2,8 +2,8 @@
 
 ## Requirements
 * Hardware:
- * [Parts List](partslist)
- * Router
+  * [Parts List](partslist)
+  * Router
  * 32 GB microSD card
 * Software:
  * [Mission Planner]() [Needs **Windows** system or virtual machine]
