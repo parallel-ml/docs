@@ -4,12 +4,12 @@
 * Hardware:
   * [Parts List](partslist)
   * Router
- * 32 GB microSD card
+  * 32 GB microSD card
 * Software:
- * [Mission Planner]() [Needs **Windows** system or virtual machine]
- * Python 3
- * [Etcher]() [For **Windows**]
-   * Or [Belina Etcher]() [For **macOS**]
+  * [Mission Planner]() [Needs **Windows** system or virtual machine]
+  * Python 3
+  * [Etcher]() [For **Windows**]
+    * Or [Belina Etcher]() [For **macOS**]
 
 ## Introduction
 To build the drone, we need to gather several hardware components. Please refer to the [Parts List](parts-list.md) and ensure all parts are present before building.
