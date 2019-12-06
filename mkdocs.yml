@@ -1,4 +1,7 @@
-site_name: distributed cloud ML
+site_name: SARAV Documentaion
+site_url: https://parallel-ml.github.io/docs/
+site_description: SARAV
+
 nav:
     - Home: index.md
     - Getting Started:
@@ -27,8 +30,10 @@ nav:
     - iRobot:
         - Keyboard Control: irobot/keyboard.md
         - Navigation with Lidar/Voice: irobot/navi_lidar_voice.md
+    - Adhoc Network: adhoc/adhoc.md
     - FPGA: fpga/split-networks.md
     - ASPLOS 2018: asplos2018/real-time.md
     - People: people/people.md
-    - Adhoc Network: adhoc/adhoc.md
-theme: readthedocs
+
+theme: 'windmill-dark'
+theme_dir: 'mkdocs-windmill-dark/mkdocs_windmill_dark'

@@ -1,0 +1,3 @@
+[submodule "mkdocs-windmill-dark"]
+	path = mkdocs-windmill-dark
+	url = https://github.com/noraj/mkdocs-windmill-dark/
