@@ -2,14 +2,14 @@
 
 ## Requirements
 * Hardware:
-  * [Parts List](partslist)
+  * [Parts List](parts-list.md)
   * Router
   * 32 GB microSD card
 * Software:
-  * [Mission Planner]() [Needs **Windows** system or virtual machine]
+  * [Mission Planner](http://ardupilot.org/planner/docs/mission-planner-installation.html) [Needs **Windows** system or virtual machine]
   * Python 3
-  * [Etcher]() [For **Windows**]
-    * Or [Belina Etcher]() [For **macOS**]
+  * [Etcher](https://www.techspot.com/downloads/6931-etcher.html) [For **Windows**]
+    * Or [Belina Etcher](https://www.balena.io/etcher/) [For **macOS**]
 
 ## Introduction
 To build the drone, we need to gather several hardware components. Please refer to the [Parts List](parts-list.md) and ensure all parts are present before building.
