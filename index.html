@@ -1,293 +1,269 @@
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="None">
   
-  <link rel="shortcut icon" href="img/favicon.ico">
-  <title>Home - distributed cloud ML</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SARAV">
+    
+    <link rel="canonical" href="https://parallel-ml.github.io/docs/">
+    <link rel="shortcut icon" href="./img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>SARAV Documentaion</title>
+    <link href="./css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="./css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="./css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
 
-  <link rel="stylesheet" href="css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
-  
-  <script>
-    // Current page data
-    var mkdocs_page_name = "Home";
-    var mkdocs_page_input_path = "index.md";
-    var mkdocs_page_url = null;
-  </script>
-  
-  <script src="js/jquery-2.1.1.min.js" defer></script>
-  <script src="js/modernizr-2.8.3.min.js" defer></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script> 
-  
+    <script src="./js/jquery-3.2.1.min.js"></script>
+    <script src="./js/bootstrap-3.3.7.min.js"></script>
+    <script src="./js/highlight.pack.js"></script>
+    
+      <script src="./js/elasticlunr.min.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '.';
+      var is_top_frame = (window === window.parent);
+        
+        var pageToc = [
+          {title: "SARAV", url: "#_top", children: [
+          ]},
+        ];
+
+    </script>
+    <script src="./js/base.js"></script>
+      <script src="search/main.js"></script> 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
 
-  <div class="wy-grid-for-nav">
-
+<nav class="navbar wm-page-top-frame">
+  <div class="container-fluid wm-top-container">
     
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
-      <div class="wy-side-nav-search">
-        <a href="." class="icon icon-home"> distributed cloud ML</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
-  </form>
-</div>
-      </div>
+    <div class="wm-top-tool pull-right wm-vcenter">
+      <form class="dropdown wm-vcentered" id="wm-search-form" action="./search.html">
+        
+        <button id="wm-search-show" class="btn btn-sm btn-default" type="submit"
+          ><i class="fa fa-search" aria-hidden="true"></i></button>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="current">
-	  
-          
-            <li class="toctree-l1 current">
-		
-    <a class="current" href=".">Home</a>
-    <ul class="subnav">
+        <div class="input-group input-group-sm wm-top-search">
+          <input type="text" name="q" class="form-control" id="mkdocs-search-query" placeholder="Search" autocomplete="off">
+          <span class="input-group-btn" role="search">
             
-    <li class="toctree-l2"><a href="#welcome-to-parallel-ml-docs">Welcome to Parallel ML Docs</a></li>
-    
-
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">Getting Started</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="getting-started/setting-up-pi/">Connecting to Raspberry Pi</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="getting-started/speaker-mic/">Setting Up Speaker and Mic</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">Cameras</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="camera/picamera/">Using the PiCamera</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="camera/webcam/">Webcam video/image</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">IMU (GPS, Accelerometer)</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="imu/gps/">GPS (Neo 6M GPS)</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="imu/imu/">IMU (Berry IMU)</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">Vision System</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="vision/character/">Character Recognition</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">Speech Recognition</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="speech/deepspeech/">Deepspeech</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="speech/sphinx/">Sphinx</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="speech/text-to-speech/">Text to Speech</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">Mapping</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="mapping/lidar-slam/">Lidar</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">Visual SLAM</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="visual_slam/webcam-information/">Webcam Information</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="visual_slam/installing-docker-on-pi/">Installing Docker on the Raspberry Pi</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="visual_slam/live-streaming-pi-video/">Live Streaming Raspberry Pi Video</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="visual_slam/calibration/">Camera Calibration</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="visual_slam/running-slam/">Running SLAM</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">iRobot</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="irobot/keyboard/">Keyboard Control</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="irobot/navi_lidar_voice/">Navigation with Lidar/Voice</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="fpga/split-networks/">FPGA</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="asplos2018/real-time/">ASPLOS 2018</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="people/people/">People</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="adhoc/adhoc/">Adhoc Network</a>
-	    </li>
-          
-        </ul>
-      </div>
-      &nbsp;
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href=".">distributed cloud ML</a>
-      </nav>
-
-      
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
-  <ul class="wy-breadcrumbs">
-    <li><a href=".">Docs</a> &raquo;</li>
-    
-      
-    
-    <li>Home</li>
-    <li class="wy-breadcrumbs-aside">
-      
-    </li>
-  </ul>
-  <hr/>
-</div>
-          <div role="main">
-            <div class="section">
-              
-                <h1 id="welcome-to-parallel-ml-docs">Welcome to Parallel ML Docs</h1>
-<p>This organization is from Georgia Tech, <a href="http://comparch.gatech.edu/hparch/">HPArch</a>.</p>
-              
-            </div>
-          </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="getting-started/setting-up-pi/" class="btn btn-neutral float-right" title="Connecting to Raspberry Pi">Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
-    </div>
-  
-
-  <hr/>
-
-  <div role="contentinfo">
-    <!-- Copyright etc -->
-    
-  </div>
-
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
-</footer>
-      
+            <button class="btn btn-default dropdown-toggle collapse" data-toggle="dropdown" type="button"><span class="caret"></span></button>
+            <ul id="mkdocs-search-results" class="dropdown-menu dropdown-menu-right"></ul>
+            <button id="wm-search-go" class="btn btn-default" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+          </span>
         </div>
+      </form>
+    </div>
+
+    
+    <div class="wm-top-tool wm-vcenter pull-right wm-small-left">
+      <button id="wm-toc-button" type="button" class="btn btn-sm btn-default wm-vcentered"><i class="fa fa-th-list" aria-hidden="true"></i></button>
+    </div>
+
+    
+    
+
+    
+    <a href="" class="wm-top-brand wm-top-link wm-vcenter">
+      
+      <div class="wm-top-title">
+        SARAV Documentaion<br>
+        
       </div>
+    </a>
+  </div>
+</nav>
 
-    </section>
+  <div id="main-content" class="wm-page-top-frame">
+    
+<nav class="wm-toc-pane">
+  
+  <ul class="wm-toctree">
+        <li class="wm-toc-li wm-toc-lev1 "><a href="" class="wm-article-link wm-toc-text">Home</a>
+</li>
+        <li class="wm-toc-li wm-toc-lev1 wm-toc-opener"><span class="wm-toc-text">Getting Started</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev2 "><a href="getting-started/setting-up-pi/" class="wm-article-link wm-toc-text">Connecting to Raspberry Pi</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev2 "><a href="getting-started/speaker-mic/" class="wm-article-link wm-toc-text">Setting Up Speaker and Mic</a>
+</li>
+  </ul>
+</li>
 
+        <li class="wm-toc-li wm-toc-lev1 wm-toc-opener"><span class="wm-toc-text">Cameras</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev2 "><a href="camera/picamera/" class="wm-article-link wm-toc-text">Using the PiCamera</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev2 "><a href="camera/webcam/" class="wm-article-link wm-toc-text">Webcam video/image</a>
+</li>
+  </ul>
+</li>
+
+        <li class="wm-toc-li wm-toc-lev1 wm-toc-opener"><span class="wm-toc-text">IMU (GPS, Accelerometer)</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev2 "><a href="imu/gps/" class="wm-article-link wm-toc-text">GPS (Neo 6M GPS)</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev2 "><a href="imu/imu/" class="wm-article-link wm-toc-text">IMU (Berry IMU)</a>
+</li>
+  </ul>
+</li>
+
+        <li class="wm-toc-li wm-toc-lev1 wm-toc-opener"><span class="wm-toc-text">Vision System</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev2 "><a href="vision/character/" class="wm-article-link wm-toc-text">Character Recognition</a>
+</li>
+  </ul>
+</li>
+
+        <li class="wm-toc-li wm-toc-lev1 wm-toc-opener"><span class="wm-toc-text">Speech Recognition</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev2 "><a href="speech/deepspeech/" class="wm-article-link wm-toc-text">Deepspeech</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev2 "><a href="speech/sphinx/" class="wm-article-link wm-toc-text">Sphinx</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev2 "><a href="speech/text-to-speech/" class="wm-article-link wm-toc-text">Text to Speech</a>
+</li>
+  </ul>
+</li>
+
+        <li class="wm-toc-li wm-toc-lev1 wm-toc-opener"><span class="wm-toc-text">Mapping</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev2 "><a href="mapping/lidar-slam/" class="wm-article-link wm-toc-text">Lidar</a>
+</li>
+  </ul>
+</li>
+
+        <li class="wm-toc-li wm-toc-lev1 wm-toc-opener"><span class="wm-toc-text">Visual SLAM</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev2 "><a href="visual_slam/webcam-information/" class="wm-article-link wm-toc-text">Webcam Information</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev2 "><a href="visual_slam/installing-docker-on-pi/" class="wm-article-link wm-toc-text">Installing Docker on the Raspberry Pi</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev2 "><a href="visual_slam/live-streaming-pi-video/" class="wm-article-link wm-toc-text">Live Streaming Raspberry Pi Video</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev2 "><a href="visual_slam/calibration/" class="wm-article-link wm-toc-text">Camera Calibration</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev2 "><a href="visual_slam/running-slam/" class="wm-article-link wm-toc-text">Running SLAM</a>
+</li>
+  </ul>
+</li>
+
+        <li class="wm-toc-li wm-toc-lev1 wm-toc-opener"><span class="wm-toc-text">iRobot</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev2 "><a href="irobot/keyboard/" class="wm-article-link wm-toc-text">Keyboard Control</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev2 "><a href="irobot/navi_lidar_voice/" class="wm-article-link wm-toc-text">Navigation with Lidar/Voice</a>
+</li>
+  </ul>
+</li>
+
+        <li class="wm-toc-li wm-toc-lev1 "><a href="adhoc/adhoc/" class="wm-article-link wm-toc-text">Adhoc Network</a>
+</li>
+        <li class="wm-toc-li wm-toc-lev1 "><a href="fpga/split-networks/" class="wm-article-link wm-toc-text">FPGA</a>
+</li>
+        <li class="wm-toc-li wm-toc-lev1 "><a href="asplos2018/real-time/" class="wm-article-link wm-toc-text">ASPLOS 2018</a>
+</li>
+        <li class="wm-toc-li wm-toc-lev1 "><a href="people/people/" class="wm-article-link wm-toc-text">People</a>
+</li>
+  </ul>
+</nav>
+
+    <div class="wm-content-pane">
+      <iframe class="wm-article" name="article"></iframe>
+    </div>
   </div>
 
-  <div class="rst-versions" role="note" style="cursor: pointer">
-    <span class="rst-current-version" data-toggle="rst-current-version">
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    
+    
       
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="getting-started/setting-up-pi/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="getting-started/setting-up-pi/" class="btn btn-xs btn-link">
+        Connecting to Raspberry Pi
+      </a>
+    </div>
+    
+  </div>
+
+    
+
+    <h1 id="sarav">SARAV</h1>
+<p><strong>SARAV</strong> is an undergraduate oriented research group that focuses on systems and architecture for robotics and autonomous vehicles. The group members are mainly from Georgia Tech undergraduate students and advised by <a href="https://ramyadhadidi.github.io/">Ramyad Hadidi</a> (PhD candidate), <a href="https://jiashenc.github.io/cv/">Jiashen Cao</a> (MS student) and <a href="https://www.cc.gatech.edu/~hyesoon/">Prof. Hyesoon Kim</a>. The group belongs to <a href="http://comparch.gatech.edu/hparch/">HpArch</a> group at Georgia Tech.</p>
+<p>Please check <a href="http://comparch.gatech.edu/hparch/undergraduate_research/">SARAV</a> for more info.</p>
+
+  <br>
+    
+
+    
+    
       
-      
-        <span style="margin-left: 15px"><a href="getting-started/setting-up-pi/" style="color: #fcfcfc">Next &raquo;</a></span>
-      
-    </span>
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="getting-started/setting-up-pi/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="getting-started/setting-up-pi/" class="btn btn-xs btn-link">
+        Connecting to Raspberry Pi
+      </a>
+    </div>
+    
+  </div>
+
+    <br>
 </div>
-    <script>var base_url = '.';</script>
-    <script src="js/theme.js" defer></script>
-      <script src="search/main.js" defer></script>
+
+<footer class="col-md-12 wm-page-content">
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="">Windmill Dark</a> theme by None (noraj).</p>
+</footer>
 
 </body>
 </html>
-
 <!--
 MkDocs version : 1.0.4
-Build Date UTC : 2019-12-03 00:55:09
+Build Date UTC : 2019-12-06 21:48:10
 -->
