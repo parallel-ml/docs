@@ -33,6 +33,7 @@ nav:
     - Adhoc Network: adhoc/adhoc.md
     - FPGA: fpga/split-networks.md
     - ASPLOS 2018: asplos2018/real-time.md
+    - Contributing to Docs: contr_docs/contr_docs.md
     - People: people/people.md
 
 theme: 'windmill-dark'
