@@ -1,5 +1,5 @@
 ## Contribute to Docs
-Documentations are in **markdown** format. All changes should be made under `/docs` directory and commmited to `master` branch before deployment. 
+Documentations are in **markdown** format. All changes should be made under `/docs` directory and commit to `master` branch before deployment. 
 
 If you add a new file, make sure to to change `mkdocs.yml`
 
