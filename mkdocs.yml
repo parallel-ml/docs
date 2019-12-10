@@ -28,4 +28,8 @@ nav:
     - ASPLOS 2018: asplos2018/real-time.md
     - People: people/people.md
     - FPGA: fpga/splitnet.md
+    - Connected Cars:
+        - Verified Communication Problem Statement and Solution: conn-cars/encrypted-communication.md
+        - Verified Communication Implementation: conn-cars/encrypted-communication-implementation.md
+        - Setting Up MQTT-Based Communication Between Pis: conn-cars/mqtt.md
 theme: readthedocs
