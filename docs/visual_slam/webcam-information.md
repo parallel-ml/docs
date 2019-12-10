@@ -1,4 +1,7 @@
 # Webcam Information
+Authors: Nima  
+Date: 8/01/2019
+
 Below is a list of cameras we tried out.
 
 ## Logitech C270 Webcam
