@@ -7,6 +7,7 @@ nav:
     - Drone:
         - Building the drone: drone/building-drone.md
         - Parts List: drone/parts-list.md
+        - Accessing Navio: drone/accessing-navio.md
     - Cameras:
         - Using the PiCamera: camera/picamera.md
         - Webcam video/image: camera/webcam.md

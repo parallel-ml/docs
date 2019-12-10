@@ -1,4 +1,4 @@
-# Building the Raspberry Pi Drone
+# Building And Configuring The Raspberry Pi Drone
 
 ## Requirements
 * Hardware:
@@ -16,19 +16,39 @@ To build the drone, we need to gather several hardware components. Please refer 
 
 
 ## Build Guide
+Note : Most instructions can be found in the manual located in the frame box.
 
+* First assemble the PI + NAVIO. Plug in the HAT into the GPIO pins on the RPI.
+* Solder the bullet connectors onto the motor connections
+* Solder the battery connector onto the Power Distribution Board (PDB)
+* Screw in the legs of the frame
+* Screw in the top plate to the frame
+* Attach motors to the frame according to the rotational direction listed in the motor manual
+* Use double sided tape and attach Raspberry pi + NAVIO to drone top plate
+* Use double sided tape and attach the PPM encoder to the frame.
+* Connect the battery connectors to the PPM encoder.
+* Stick the RC receiver onto the frame.
+* Connect receiver to the NAVIO
+* Connect PPM outputs to NAVIO
+* Use zip ties and attach ESCs to the bottom of the legs
+* Assemble the GPS mount and zip tie it into the back-right leg
+(Note : GPS unit must point North-South)
+* Attach GPS on mount and connect GPS to NAVIO
+* Connect ESCs to motors and ESCs pwm to PPM encoder
+* Connect battery to battery connector
+* Finally connect TELEM module to HAT and stick module onto frame
+
+## Hardware Calibration
+* Calibrate ESCs using the RC controller and charged battery
+* Calibrate barometer using known height
+* Calibrate Compasses using the GPS signal
 
 ## Installation
-* Clone or Download the above git repository
-* cd to __BreezySLAM/python__ and run the following command
-  * `$ sudo python3 setup.py install`    
-* For installing the rplidar python package run the following pip command
-  * ` $ sudo pip3 install rplidar`
-* For seeing the live animation of the map, we install PyRoboViz
-    * cd to __PyRoboViz__ folder and run the following command
-      `sudo python3 setup.py install `
+* Download EMLID OS image from EMLID website (for Navio2)
+* Use Etcher to burn image onto SD card
+* Insert SD card into PI
+* Configure the PI to connect to WIFI
+* Download MissionPlanner on Windows machine or VM
 
-## Running Slam
-* Connect the lidar to the system via a USB port and run the following command in the terminal
-`sudo chmod 666 /dev/ttyUSB0 `
-* From the **BreezySLAM/examples** folder run the rpslam .py file to get live map of the surrounding.
+## Accessing APIs and flying
+Please visit [Accessing Navio](accessing-navio.md)
