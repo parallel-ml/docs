@@ -7,6 +7,10 @@ nav:
     - Getting Started:
         - Connecting to Raspberry Pi: getting-started/setting-up-pi.md
         - Setting Up Speaker and Mic: getting-started/speaker-mic.md
+    - Drone:
+        - Building the drone: drone/building-drone.md
+        - Parts List: drone/parts-list.md
+        - Accessing Navio: drone/accessing-navio.md
     - Cameras:
         - Using the PiCamera: camera/picamera.md
         - Webcam video/image: camera/webcam.md
