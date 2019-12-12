@@ -32,7 +32,7 @@ the `SPEECH_RECOGNITION` environment variable should be set to `~/sphinxSpeech2T
 **Running the code:**
 
 You now have compiled the code. A demo can be run via
-`./decode`. It will record your voice for 5 seconds, filter the noise, and try to parse commands from the limited corpus. The output text can be found in the `/output` folder and the raw and filtered recordings can be found in the `/testfiles` folder.
+`./decode`. It will record your voice for 5 seconds, filter the noise, and try to parse commands from the limited corpus. The output text can be found in the `/output` folder and the raw and filtered recordings can be found in the `/inputs` folder.
 # Details
 Parallel-ml repo: [https://github.com/parallel-ml/sphinxSpeech2Text](https://github.com/parallel-ml/sphinxSpeech2Text)
 
