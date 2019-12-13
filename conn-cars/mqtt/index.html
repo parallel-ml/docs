@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <link rel="canonical" href="https://parallel-ml.github.io/docs/conn-cars/mqtt/">
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Setting Up MQTT-Based Communication Between Pis - SARAV Documentaion</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Setting Up MQTT-Based Communication Between Pis", url: "#_top", children: [
+              {title: "Code", url: "#code" },
+              {title: "Getting Started", url: "#getting-started" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script>
+      <script src="../../search/main.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav">
+      <a href="../encrypted-communication-implementation/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../encrypted-communication-implementation/" class="btn btn-xs btn-link">
+        Verified Communication Implementation
+      </a>
+    </div>
+    
+  </div>
+
+    
+
+    <h1 id="setting-up-mqtt-based-communication-between-pis">Setting Up MQTT-Based Communication Between Pis</h1>
+<p>We use MQTT to set up a single-publisher, multiple-subscriber event system where:
+- All Raspberry Pis connect to the same MQTT broker.
+- Each Raspberry Pi can broadcast a message to other Raspberry Pis over the MQTT network</p>
+<h2 id="code">Code</h2>
+<p>The code is located at the following GitHub repository: https://github.com/parallel-ml/robot-communication</p>
+<h2 id="getting-started">Getting Started</h2>
+<h3 id="client">Client</h3>
+<p>On the client, run <code>python app.py --broker "mqtt://{IP_FOR_BROKER}" --label "{LABEL}" --topics-publish {PUBLISH TOPICS} --topics-subscribe {SUBSCRIBE TOPICS}</code> to start the Python test client.</p>
+<h3 id="broker">Broker</h3>
+<p>Clone the repository and run <code>docker-compose up -d</code> to start the MQTT server.</p>
+
+  <br>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav">
+      <a href="../encrypted-communication-implementation/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../encrypted-communication-implementation/" class="btn btn-xs btn-link">
+        Verified Communication Implementation
+      </a>
+    </div>
+    
+  </div>
+
+    <br>
+</div>
+
+<footer class="col-md-12 wm-page-content">
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="">Windmill Dark</a> theme by None (noraj).</p>
+</footer>
+
+</body>
+</html>

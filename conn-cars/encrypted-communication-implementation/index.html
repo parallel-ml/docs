@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <link rel="canonical" href="https://parallel-ml.github.io/docs/conn-cars/encrypted-communication-implementation/">
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Verified Communication Implementation - SARAV Documentaion</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Verified Communication Implementation", url: "#_top", children: [
+              {title: "Getting Started", url: "#getting-started" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script>
+      <script src="../../search/main.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../mqtt/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../mqtt/" class="btn btn-xs btn-link">
+        Setting Up MQTT-Based Communication Between Pis
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../encrypted-communication/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../encrypted-communication/" class="btn btn-xs btn-link">
+        Verified Communication Problem Statement and Solution
+      </a>
+    </div>
+    
+  </div>
+
+    
+
+    <h1 id="verified-communication-implementation">Verified Communication Implementation</h1>
+<p>The code for our implementation is located in the following repository: https://github.com/nimashoghi/v2v-node</p>
+<h2 id="getting-started">Getting Started</h2>
+<h3 id="development-dependencies-and-pre-requisities">Development Dependencies and Pre-requisities</h3>
+<p>If you're planning on making changes to the code, make sure you have the following installed:
+- Node.js
+- Yarn
+- Python 3
+- OpenCV</p>
+<p>If you simply want to use this, you can use our Docker images.</p>
+<h3 id="cloning-the-repository">Cloning the repository</h3>
+<pre><code class="bash">git clone https://github.com/nimashoghi/v2v-node.git
+cd v2v-node
+yarn
+</code></pre>
+
+<h3 id="generating-private-key-public-key-pairs">Generating private key public key pairs</h3>
+<p>First of all, you're going to need to generate private/public key pairs. If you have cloned the repository as shown above, you can run the following command to generate a key pair:</p>
+<pre><code class="bash">yarn ts-node ./scripts/create-key-pair.ts
+</code></pre>
+
+<h3 id="building-docker-images">Building Docker Images</h3>
+<p>You can build the client Docker image by running</p>
+<pre><code class="bash">chmod +x ./build.sh
+./build.sh
+</code></pre>
+
+<p>This will create the following Docker image: <code>niamshoghi/dac-v2v:latest</code>. You can change this name by editing <code>build.sh</code>.</p>
+<h3 id="deploying-on-the-server">Deploying on the Server</h3>
+<p>To enable messaging between the Pis, you will need to setup the MQTT broker on the server. To do this, you will need to:
+- Download the server's <code>docker-compose.yml</code> and <code>mosquitto.conf</code> files by running the following commands:</p>
+<pre><code class="bash">wget https://raw.githubusercontent.com/nimashoghi/v2v-node/master/deployment/server/docker-compose.yaml
+wget https://raw.githubusercontent.com/nimashoghi/v2v-node/master/deployment/server/mosquitto.conf
+</code></pre>
+
+<ul>
+<li>Run <code>docker-compose up -d</code> to start the server.</li>
+<li>Keep the IP of this server for the client deployment process.</li>
+</ul>
+<h3 id="deploying-on-the-pi">Deploying on the Pi</h3>
+<p>To deploy the program on the Pi, go through the following steps:
+- Download the <code>docker-compose.yml</code> configuration onto each Pi. Modify the <code>docker-compose.yml</code> file so that the <code>MQTT_HOST</code> is the IP of the server that you deployed the MQTT broker on (from the previous step). Also modify the <code>ALL_TOPICS</code> variable so that it contains a comma-delimited list of the client ids for each Pi. The <code>CLIENT_ID</code> is a unique id that repesents the name of the MQTT channel for that Pi.
+- Make sure that the public and private keys for the Pi are located at the following locations, respectively: <code>./keys/{{CLIENT_ID}}/public.pem</code> and <code>./keys/{{CLIENT_ID}}/private.pem</code>.
+- Run the following command on the Pi to start the app: <code>CLIENT_ID={{CLIENT_ID}} docker-compose up -d</code>.
+- The network should add each Pi into the system as it connects.</p>
+<h3 id="testing">Testing</h3>
+<p>Once everything is set up, you can:
+- Set up two Roombas, one behind the other, so that the one in the back can see the QR code of the one in the front.
+- Send movement commands to the front Roomba, using <a href="https://github.com/nimashoghi/v2v-node/blob/master/keyboard-control/app.py">our modified keyboard control script</a>. The setup instructions are the same as <a href="https://parallel-ml.github.io/docs/#irobot/keyboard/">the iRobot keyboard control instructions on the parallel-ml docs</a>.</p>
+
+  <br>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../mqtt/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../mqtt/" class="btn btn-xs btn-link">
+        Setting Up MQTT-Based Communication Between Pis
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../encrypted-communication/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../encrypted-communication/" class="btn btn-xs btn-link">
+        Verified Communication Problem Statement and Solution
+      </a>
+    </div>
+    
+  </div>
+
+    <br>
+</div>
+
+<footer class="col-md-12 wm-page-content">
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="">Windmill Dark</a> theme by None (noraj).</p>
+</footer>
+
+</body>
+</html>

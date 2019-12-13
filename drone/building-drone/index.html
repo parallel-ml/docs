@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <link rel="canonical" href="https://parallel-ml.github.io/docs/drone/building-drone/">
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Building the drone - SARAV Documentaion</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Building And Configuring The Raspberry Pi Drone", url: "#_top", children: [
+              {title: "Requirements", url: "#requirements" },
+              {title: "Introduction", url: "#introduction" },
+              {title: "Build Guide", url: "#build-guide" },
+              {title: "Hardware Calibration", url: "#hardware-calibration" },
+              {title: "Installation", url: "#installation" },
+              {title: "Accessing APIs and flying", url: "#accessing-apis-and-flying" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script>
+      <script src="../../search/main.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../parts-list/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../parts-list/" class="btn btn-xs btn-link">
+        Parts List
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../../getting-started/speaker-mic/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../../getting-started/speaker-mic/" class="btn btn-xs btn-link">
+        Setting Up Speaker and Mic
+      </a>
+    </div>
+    
+  </div>
+
+    
+
+    <h1 id="building-and-configuring-the-raspberry-pi-drone">Building And Configuring The Raspberry Pi Drone</h1>
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li>Hardware:</li>
+<li><a href="../parts-list/">Parts List</a></li>
+<li>Router</li>
+<li>32 GB microSD card</li>
+<li>Software:</li>
+<li><a href="http://ardupilot.org/planner/docs/mission-planner-installation.html">Mission Planner</a> [Needs <strong>Windows</strong> system or virtual machine]</li>
+<li>Python 3</li>
+<li><a href="https://www.techspot.com/downloads/6931-etcher.html">Etcher</a> [For <strong>Windows</strong>]<ul>
+<li>Or <a href="https://www.balena.io/etcher/">Belina Etcher</a> [For <strong>macOS</strong>]</li>
+</ul>
+</li>
+</ul>
+<h2 id="introduction">Introduction</h2>
+<p>To build the drone, we need to gather several hardware components. Please refer to the <a href="../parts-list/">Parts List</a> and ensure all parts are present before building.</p>
+<h2 id="build-guide">Build Guide</h2>
+<p>Note : Most instructions can be found in the manual located in the frame box.</p>
+<ul>
+<li>First assemble the PI + NAVIO. Plug in the HAT into the GPIO pins on the RPI.</li>
+<li>Solder the bullet connectors onto the motor connections</li>
+<li>Solder the battery connector onto the Power Distribution Board (PDB)</li>
+<li>Screw in the legs of the frame</li>
+<li>Screw in the top plate to the frame</li>
+<li>Attach motors to the frame according to the rotational direction listed in the motor manual</li>
+<li>Use double sided tape and attach Raspberry pi + NAVIO to drone top plate</li>
+<li>Use double sided tape and attach the PPM encoder to the frame.</li>
+<li>Connect the battery connectors to the PPM encoder.</li>
+<li>Stick the RC receiver onto the frame.</li>
+<li>Connect receiver to the NAVIO</li>
+<li>Connect PPM outputs to NAVIO</li>
+<li>Use zip ties and attach ESCs to the bottom of the legs</li>
+<li>Assemble the GPS mount and zip tie it into the back-right leg
+(Note : GPS unit must point North-South)</li>
+<li>Attach GPS on mount and connect GPS to NAVIO</li>
+<li>Connect ESCs to motors and ESCs pwm to PPM encoder</li>
+<li>Connect battery to battery connector</li>
+<li>Finally connect TELEM module to HAT and stick module onto frame</li>
+</ul>
+<h2 id="hardware-calibration">Hardware Calibration</h2>
+<ul>
+<li>Calibrate ESCs using the RC controller and charged battery</li>
+<li>Calibrate barometer using known height</li>
+<li>Calibrate Compasses using the GPS signal</li>
+</ul>
+<h2 id="installation">Installation</h2>
+<ul>
+<li>Download EMLID OS image from EMLID website (for Navio2)</li>
+<li>Use Etcher to burn image onto SD card</li>
+<li>Insert SD card into PI</li>
+<li>Configure the PI to connect to WIFI</li>
+<li>Download MissionPlanner on Windows machine or VM</li>
+</ul>
+<h2 id="accessing-apis-and-flying">Accessing APIs and flying</h2>
+<p>Please visit <a href="../accessing-navio/">Accessing Navio</a></p>
+
+  <br>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../parts-list/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../parts-list/" class="btn btn-xs btn-link">
+        Parts List
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../../getting-started/speaker-mic/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../../getting-started/speaker-mic/" class="btn btn-xs btn-link">
+        Setting Up Speaker and Mic
+      </a>
+    </div>
+    
+  </div>
+
+    <br>
+</div>
+
+<footer class="col-md-12 wm-page-content">
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="">Windmill Dark</a> theme by None (noraj).</p>
+</footer>
+
+</body>
+</html>

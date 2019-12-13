@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <link rel="canonical" href="https://parallel-ml.github.io/docs/conn-cars/encrypted-communication/">
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Verified Communication Problem Statement and Solution - SARAV Documentaion</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Verified Communication Problem Statement and Solution", url: "#_top", children: [
+              {title: "Secure and Verified Inter-vehicle Communication and Performance Considerations", url: "#secure-and-verified-inter-vehicle-communication-and-performance-considerations" },
+          ]},
+          {title: "Vehicle-to-Vehicle (V2V) Communication and Existing Work", url: "#vehicle-to-vehicle-v2v-communication-and-existing-work", children: [
+              {title: "Potentials of V2V", url: "#potentials-of-v2v" },
+          ]},
+          {title: "Problems with V2V", url: "#problems-with-v2v", children: [
+              {title: "Infrastructure", url: "#infrastructure" },
+              {title: "Security", url: "#security" },
+          ]},
+          {title: "Our Solution: Verified and Encrypted Messaging Between Vehicles", url: "#our-solution-verified-and-encrypted-messaging-between-vehicles", children: [
+              {title: "Time-Dependence", url: "#time-dependence" },
+              {title: "Acknowledgement Packets", url: "#acknowledgement-packets" },
+              {title: "Multiple \"Hops\"", url: "#multiple-hops" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script>
+      <script src="../../search/main.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../encrypted-communication-implementation/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../encrypted-communication-implementation/" class="btn btn-xs btn-link">
+        Verified Communication Implementation
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../../people/people/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../../people/people/" class="btn btn-xs btn-link">
+        People
+      </a>
+    </div>
+    
+  </div>
+
+    
+
+    <h1 id="verified-communication-problem-statement-and-solution">Verified Communication Problem Statement and Solution</h1>
+<h2 id="secure-and-verified-inter-vehicle-communication-and-performance-considerations">Secure and Verified Inter-vehicle Communication and Performance Considerations</h2>
+<h1 id="vehicle-to-vehicle-v2v-communication-and-existing-work">Vehicle-to-Vehicle (V2V) Communication and Existing Work</h1>
+<p>Is going to be implemented in many future cars, including those that are not self-driving. See <a href="https://www.theverge.com/2016/12/13/13936342/wireless-vehicle-to-vehicle-communication-v2v-v2i-dot-nhtsa">https://www.theverge.com/2016/12/13/13936342/wireless-vehicle-to-vehicle-communication-v2v-v2i-dot-nhtsa</a></p>
+<h2 id="potentials-of-v2v">Potentials of V2V</h2>
+<p>Traffic lights could broadcast their state over the network.</p>
+<p>Vehicles could broadcast their speeds.</p>
+<h1 id="problems-with-v2v">Problems with V2V</h1>
+<h2 id="infrastructure">Infrastructure</h2>
+<p>Currently, a separate protocol has been proposed for V2V, and not many cars support this protocol. In our experiments, we will be setting up a mesh WiFi network to communicate (as an emulation of this protocol). This may prove to be viable in the real world as well.</p>
+<h2 id="security">Security</h2>
+<p>Security is the biggest concern with these efforts. If our system design has clear security flaws, then bad actors can abuse these flaws to do some massive harm.</p>
+<p>Some key security concerns are listed below.</p>
+<h3 id="1-impersonation-and-falsification">1. Impersonation and Falsification</h3>
+<p>A bad actor could impersonate another vehicle and report information that is incorrect, leading to accidents.</p>
+<h3 id="2-lack-of-verification">2. Lack of Verification</h3>
+<p>When you get a message, you should be able to verify which vehicle, in the physical world, that message comes from. Many existing systems do not implement this (?)</p>
+<h3 id="3-duplication-of-legitimate-messages">3. Duplication of Legitimate Messages</h3>
+<p>Due to the peer-to-peer nature of the network setup, nearby vehicles will receive all messages, even those that are not particularly interesting to them. Assuming that some underlying digital signing mechanism (using asymmetric encryption) is used, there is still a problem in cases where.</p>
+<h3 id="4-privacy">4. Privacy</h3>
+<p>Broadcasting information to vehicles near you has some clear privacy concerns.</p>
+<h1 id="our-solution-verified-and-encrypted-messaging-between-vehicles">Our Solution: Verified and Encrypted Messaging Between Vehicles</h1>
+<p>Every vehicle (and other broadcasting entities in the street, such as traffic lights) has a public/private key pair. The vehicle broadcasts its public key using a QR code (or some other visual method of transmitting information). When a vehicle wants to transmit information to other vehicles nearby, it encrypts that message with its private key. Other vehicles can verify that the message is coming from the right vehicle by decrypting that message using the QR code for that vehicle. This way, you can ensure that the message is coming from the correct source. This solution solves problems (1) and (2).</p>
+<h2 id="time-dependence">Time-Dependence</h2>
+<p>To prevent the duplication of signed messages, we can encode the current time into the sent packet. Then, clients will only trust messages within a few seconds of their transmission time.</p>
+<h2 id="acknowledgement-packets">Acknowledgement Packets</h2>
+<p>The final security guarantee, added on top of the existing security measures, will be an end-to-end encrypted acknowledgment process. When a vehicle broadcasts some sort of update packet (e.g. speed update), other clients will receive this message and verify it using the vehicle's QR code. Once this verification is successful, clients can send a direct message to the source vehicle, establish an encrypted channel of communication with them, and ask them to verify that the packet received is legitimate and valid in the current time frame.</p>
+<h2 id="multiple-hops">Multiple "Hops"</h2>
+<p>In cases where vehicles do not have a direct line of sight to the QR codes of the subjects they want to verify, we implement a "hop" system. In this case, every vehicle that verifies some message. Imagine the following scenario:</p>
+<p>In the scenario below, imagine if four cars are all in the same lane consecutively: A B C D (A is in front of B who is in front of C who is in front of D), and A wants to verifiably transmit some message to D.</p>
+<ol>
+<li>Vehicle A sends a speed update to 200 mph.</li>
+<li>Vehicle B, who has a direct line of sight with A's QR code, receives vehicle A's speed update packet and verifies this information by decrypting with vehicle A's public key.</li>
+<li>Vehicle B then broadcasts that it has verified vehicle A's speed update to 200 mph.</li>
+<li>Vehicle C receives vehicle A's original speed update packet but is unable to verify it.</li>
+<li>Vehicle C receives vehicle B's verification packet and verifies its authenticity by decrypting with vehicle B's public key.</li>
+<li>Vehicle C then broadcasts that it has verified vehicle B's verification of vehicle A's speed up.</li>
+<li>Vehicle D receives vehicle A's original speed update packet but is unable to verify it.</li>
+<li>Vehicle D receives vehicle C's verification packet of vehicle B, which pertains to the original speed up packet of vehicle A, and verifies its authenticity by decrypting with vehicle C's public key.</li>
+<li>Vehicle D has now received the original information from vehicle A. Please note that the "trustability" of the message drops for every hop that the packet takes. Please see the next section for more details</li>
+</ol>
+<h3 id="trustability">Trustability</h3>
+<p>As packets hop through vehicle to vehicle, we calculate a trustability factor for them. For the sake of simplicity, we define the "trustability" of a packet to be 1 / (# of hops that the packet takes). For example, the packet from the previous section took 3 hops from A to D, so it has a trustability factor of 1/3 or 33%.</p>
+<p>A vehicle will only trust a packet if the net trustability factor is 100%. For example, if D receives 2 other verification messages about A's speed up, then it will trust the event. This may happen if other vehicles in other lanes also send verification messages.</p>
+<h3 id="scan-a-qr-code-every-500-ms">Scan a QR code every 500 ms</h3>
+<p>If we scan a QR code and validate it, then we cache for some time period. You also want to mark this into your localization.</p>
+<p>We could expand the integration with the localization system and exploring the security risks of doing so.</p>
+<p>If we get some message from a vehicle that we don't recognize (i.e. we haven't scanned the QR code for this message yet), then we wait for some time period before fully discarding the message.</p>
+
+  <br>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../encrypted-communication-implementation/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../encrypted-communication-implementation/" class="btn btn-xs btn-link">
+        Verified Communication Implementation
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../../people/people/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../../people/people/" class="btn btn-xs btn-link">
+        People
+      </a>
+    </div>
+    
+  </div>
+
+    <br>
+</div>
+
+<footer class="col-md-12 wm-page-content">
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="">Windmill Dark</a> theme by None (noraj).</p>
+</footer>
+
+</body>
+</html>

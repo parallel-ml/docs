@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <link rel="canonical" href="https://parallel-ml.github.io/docs/drone/accessing-navio/">
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Accessing Navio - SARAV Documentaion</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Accessing Navio and Executing code", url: "#_top", children: [
+              {title: "First connect to the NAVIO+PI", url: "#first-connect-to-the-naviopi" },
+              {title: "Installing VENV and APIs", url: "#installing-venv-and-apis" },
+              {title: "Running DroneKit and other code", url: "#running-dronekit-and-other-code" },
+              {title: "Monitoring with MissionPlanner", url: "#monitoring-with-missionplanner" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script>
+      <script src="../../search/main.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../../camera/picamera/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../../camera/picamera/" class="btn btn-xs btn-link">
+        Using the PiCamera
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../parts-list/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../parts-list/" class="btn btn-xs btn-link">
+        Parts List
+      </a>
+    </div>
+    
+  </div>
+
+    
+
+    <h1 id="accessing-navio-and-executing-code">Accessing Navio and Executing code</h1>
+<h2 id="first-connect-to-the-naviopi">First connect to the NAVIO+PI</h2>
+<ul>
+<li><code>$ ssh pi@192.168.1.48</code></li>
+<li>Password : raspberry</li>
+<li>You should now have SSHed into the Navio+Pi</li>
+<li>Note, the drone has already been configured to connect to the lab wifi network. Also, the router assigns the same IP <strong>192.168.1.48</strong> to the drone every time.</li>
+</ul>
+<h2 id="installing-venv-and-apis">Installing VENV and APIs</h2>
+<ul>
+<li><code>pip install dronekit</code></li>
+<li><code>sudo emlidtool --on_boot=True</code></li>
+<li><code>pip freeze | grep dronekit</code></li>
+<li>Verify installation and version</li>
+</ul>
+<h2 id="running-dronekit-and-other-code">Running DroneKit and other code</h2>
+<ul>
+<li>Please visit DroneKit docs on github to see what each function does.</li>
+<li>You can code in Python 3 or C++</li>
+<li>To run a Python file, <code>python test.py</code></li>
+<li>To run a C++ file, first compile and then <code>./test</code></li>
+<li>If everyhting is set up correctly, the drone will execute the commands given to it</li>
+</ul>
+<h2 id="monitoring-with-missionplanner">Monitoring with MissionPlanner</h2>
+<ul>
+<li>Start up MissionPlanner</li>
+<li>Connect the other TELEM USB module to your computer</li>
+<li>Select <code>COM3</code> from top-right drop-down menu</li>
+<li>Click <code>Connect</code></li>
+<li>Make sure drone is powered</li>
+<li>MissionPlanner should automatically connect to the drone and download all the variables and their types and start real-time monitoring</li>
+</ul>
+
+  <br>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../../camera/picamera/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../../camera/picamera/" class="btn btn-xs btn-link">
+        Using the PiCamera
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../parts-list/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../parts-list/" class="btn btn-xs btn-link">
+        Parts List
+      </a>
+    </div>
+    
+  </div>
+
+    <br>
+</div>
+
+<footer class="col-md-12 wm-page-content">
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="">Windmill Dark</a> theme by None (noraj).</p>
+</footer>
+
+</body>
+</html>
