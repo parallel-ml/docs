@@ -20,6 +20,7 @@ nav:
     - Vision System:
         - Character Recognition: vision/character.md
     - Speech Recognition:
+        - Klauba Speech: speech/klauba-speech.md
         - Deepspeech: speech/deepspeech.md
         - Sphinx: speech/sphinx.md
         - Text to Speech: speech/text-to-speech.md
