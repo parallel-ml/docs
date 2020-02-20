@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <link rel="canonical" href="https://parallel-ml.github.io/docs/speech/klauba-speech/">
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Klauba Speech - SARAV Documentaion</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Klauba Speech", url: "#_top", children: [
+          ]},
+          {title: "Introduction", url: "#introduction", children: [
+          ]},
+          {title: "Major Changes", url: "#major-changes", children: [
+          ]},
+          {title: "Installing Dependencies and Code Base", url: "#installing-dependencies-and-code-base", children: [
+              {title: "Supported Operating Systems and Prerequisites:", url: "#supported-operating-systems-and-prerequisites" },
+              {title: "Configuring your microphone", url: "#configuring-your-microphone" },
+              {title: "Installing Snowboy", url: "#installing-snowboy" },
+              {title: "Installing Our Code", url: "#installing-our-code" },
+          ]},
+          {title: "Running Code For the First Time", url: "#running-code-for-the-first-time", children: [
+              {title: "Fixing errors", url: "#fixing-errors" },
+          ]},
+          {title: "Code Explanation", url: "#code-explanation", children: [
+          ]},
+          {title: "Models", url: "#models", children: [
+              {title: "Updating the Dictionary and Language Models", url: "#updating-the-dictionary-and-language-models" },
+          ]},
+          {title: "Future Improvements", url: "#future-improvements", children: [
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script>
+      <script src="../../search/main.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../deepspeech/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../deepspeech/" class="btn btn-xs btn-link">
+        Deepspeech
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../../vision/character/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../../vision/character/" class="btn btn-xs btn-link">
+        Character Recognition
+      </a>
+    </div>
+    
+  </div>
+
+    
+
+    <h1 id="klauba-speech">Klauba Speech</h1>
+<p>Author: Bryce Plunkett</p>
+<h1 id="introduction">Introduction</h1>
+<p>In this article, I will go over how to get Klauba's (current) iteration of speech recongition code to run on the Raspberry PI or an Ubuntu-based machine. </p>
+<p><strong>BEFORE</strong> you read this article, I encourage you to check out the <em>Sphinx</em> doc. All of the code/scripts are iterations and improvements of that code.</p>
+<h1 id="major-changes">Major Changes</h1>
+<ul>
+<li>Implemented a hotword detector (Listens for "Klauba") before recording and parsing speech input</li>
+<li>"Intelligent" voice recording after "Klauba" is detected<ul>
+<li>Wont' start recording until silence has been broken</li>
+<li>Stops recording after a certain amount of continous silence</li>
+</ul>
+</li>
+<li>Improved accuracy of speech recognition<ul>
+<li>Fine-tuned the corpus (and regenerated language and lexical models)</li>
+<li>Created a script to autogenerate corpuses based off of sententence templates and room numbers</li>
+<li>Removed the pre-input noise filtering code (in the previous iteration, we noise filtered the code BEFORE we passed it to shpinx)</li>
+</ul>
+</li>
+<li>Parsed speech now passed to a python script, which can distribute the text to all other code (like the movement code)</li>
+<li>Script won't stop running until stopped by the user</li>
+</ul>
+<h1 id="installing-dependencies-and-code-base">Installing Dependencies and Code Base</h1>
+<p><strong>NOTE:</strong> This can be a little tricky. Every system is different and requires a slightly different install process. If you run into any problems, feel free to shoot me an e-mail: <code>plunkett.bryce.m@gatech.edu</code>.</p>
+<p><em>Snowboy</em> refers to the library used for hotword detection
+<em>Sphinx (Pocketsphinx, CMUSphinx)</em> refers to the library used for speech recognition</p>
+<h2 id="supported-operating-systems-and-prerequisites">Supported Operating Systems and Prerequisites:</h2>
+<p>This OS list has been pulled from Snowboy git docs. The operating systems marked with a "*",  have tested the code on </p>
+<ul>
+<li>all versions of Raspberry Pi (with Raspbian based on Debian Jessie 8.0)</li>
+<li>64bit Ubuntu 14.04*</li>
+<li>64bit Mac OS X</li>
+<li>ARM64 (aarch64, Ubuntu 16.04)*</li>
+</ul>
+<p>You also need to have <strong>Python 2.7</strong> and <strong>git</strong> installed.</p>
+<p><strong>Ultimately, this guide assumes you are on an Ubuntu-based operating system</strong></p>
+<h2 id="configuring-your-microphone">Configuring your microphone</h2>
+<p>You might need to redo this step whenever a USB device with a microphone (including webcams) is plugged into the machine you're running the code on.</p>
+<p><strong>To Test if your microphone is configured correctly:</strong> 
+<code>rec {{file name}}.wav</code>
+Hit <code>contrl-c</code> when you're done recording. If you hear your voice in the generated <code>.wav</code>, then your microphone is configured correctly. If not, then your microphone is not configured correctly. </p>
+<p><strong>If your microphone is not configured correctly:</strong></p>
+<p>Edit (or create if it does not exist): <code>/etc/asound.conf</code></p>
+<p>Copy and paste into the file and edit the <em>playback</em> card and <em>record</em> card. You will need to do this as the <em>root user</em>.</p>
+<p>To get playback devices: <code>aplay -l</code><br />
+To get recording devices: <code>arecord -l</code></p>
+<pre><code>pcm.!default {
+  type asym
+   playback.pcm {
+     type plug
+     slave.pcm &quot;hw {{playback card #}}, {{playback device #}}&quot;
+   }
+   capture.pcm {
+     type plug
+     slave.pcm &quot;hw {{record card #}}, {{record device #}}&quot;
+   }
+}
+</code></pre>
+
+<p>Example <em>/etc/asound.conf</em>: </p>
+<pre><code>pcm.!default {
+  type asym
+   playback.pcm {
+     type plug
+     slave.pcm &quot;hw:0,0&quot;
+   }
+   capture.pcm {
+     type plug
+     slave.pcm &quot;hw:1,0&quot;
+   }
+}
+</code></pre>
+
+<p>Test your changes with the <code>arec</code> command</p>
+<h2 id="installing-snowboy">Installing Snowboy</h2>
+<p>First, you need to install Snowboy (the library used for hotword detection). This tends to always pose some complications.</p>
+<p>You can try following the guide below or the <a href="https://github.com/Kitt-AI/snowboy">official Snowboy guide</a>. I recommend trying to follow the Snowboy guide and using this guide as a reference.</p>
+<h3 id="installing-swig">Installing Swig</h3>
+<p>You need a version of swig installed <strong>&gt;= 3.0.10</strong>. I have tried older versions with no success. Snowboy will refuse to completely build. Unfortunately, the newer version of swig does not seem to be on Ubuntu's apt repository, so you will need to manually build and install it.</p>
+<p>Here are several resources to help you install swig:
+* http://www.linuxfromscratch.org/blfs/view/7.10/general/swig.html
+* https://github.com/swig/swig/blob/master/INSTALL
+* https://github.com/Kitt-AI/snowboy (scroll to the section that details installing swig)</p>
+<p><strong>Verify your swig install</strong>: <code>swig -version</code></p>
+<h3 id="install-other-snowboy-dependencies">Install other snowboy dependencies</h3>
+<pre><code>$ sudo apt-get install python-pyaudio sox
+$ pip install pyaudio
+$ sudo apt-get install libatlas-base-dev
+</code></pre>
+
+<h3 id="compiling-python-wrapper">Compiling Python wrapper</h3>
+<p>Clone the Snowboy repository</p>
+<pre><code>git clone https://github.com/Kitt-AI/snowboy.git
+cd snowboy
+</code></pre>
+
+<p>Compile the Python wrapper (assuming you're cd'ed into the snowboy root directory)</p>
+<pre><code>cd swig/Python
+make
+</code></pre>
+
+<h3 id="setting-environment-variable">Setting Environment Variable</h3>
+<p>Ideally, you successfully compiled the Snowboy python wrapper. Now, our python needs a way to access what you compiled. </p>
+<p>You need to add <code>{{Snowboy Root Directory}}/examples/Python</code> to the <code>PYTHONPATH</code> environment variable. Whenever you run a command in python, one place it will search for depencies are all the directories listed in the <code>PYTHONPATH</code>. </p>
+<p>Replace <em>{{Snowboy Root Directory}}</em> with an absolute path to your Snowboy code. </p>
+<p>To test you set this environment variable correctly, open up a new terminal and type: <code>echo $PYTHONPATH</code>. Your path to the Python Snowboy wrapper should now be in list of variables in the PYTHONPATH. </p>
+<h2 id="installing-our-code">Installing Our Code</h2>
+<h3 id="clone-and-install-dependencies">Clone and install dependencies:</h3>
+<pre><code>$ git clone https://github.com/parallel-ml/sphinxSpeech2Text
+$ cd ./sphinxSpeech2Text
+$ sudo chmod u+x ./install.sh
+$ ./install.sh
+</code></pre>
+
+<h3 id="compile">Compile</h3>
+<pre><code>$ make
+</code></pre>
+
+<h3 id="before-you-can-run-the-code">Before you can run the code:</h3>
+<ul>
+<li>Set the <code>SPEECH_RECOGNITION</code> environment variable to point to the repository. For instance, if you cloned the repository into <code>~</code>, then
+the <code>SPEECH_RECOGNITION</code> environment variable should be set to <code>~/sphinxSpeech2Text</code>. </li>
+<li>DO NOT USE any shorthand such as <code>~</code> in the environment variable</li>
+</ul>
+<h1 id="running-code-for-the-first-time">Running Code For the First Time</h1>
+<p>To run the code, call <code>./snowboy-code</code> . All processed output will be saved to </p>
+<h2 id="fixing-errors">Fixing errors</h2>
+<p>You will probably see many errors related to audio dependencies on your machine. This <a href="https://github.com/Kitt-AI/snowboy/issues/9#issuecomment-241577381">issue thread</a> on the Snowboy Github repository does a great job solving most of them. Please refer to it <strong>FIRST</strong> before continuing with this guide</p>
+<h3 id="jack-control-x11-issue">Jack Control X11 Issue</h3>
+<p>If <code>jack_control start</code> throws some issue about X11 adapter, it's because you're SSHing into (presumably a raspberry pi) without X11 forwarding (don't ask me why jack_control wants a display). </p>
+<p>To fix this issue, when you SSH into the machine you're installing the code on, use the "-X" (case sensitive) parameter: <code>ssh -X {{User name}}@{{IP}}</code>.</p>
+<h3 id="cannot-lock-down-byte-memory">Cannot lock down byte memory</h3>
+<p>The error regarding "byte memory" appears to not affect how the code runs. It can be ignored (it's a glitch with snowboy)</p>
+<h3 id="the-console-hangsfreezes-when-klauba-is-detected">The console hangs/freezes when "Klauba" is detected</h3>
+<p>If the console hangs after detecting Klauba, in other words, nothing happens after <code>INFO:snowboy:Keyword 1 detected at time: {{DATE} {{TIME}}</code>:</p>
+<p>This is a bizarre glitch with Snowboy. Luckily, there is a fix... <br />
+1. Hit <code>control-z</code> (exits the script)
+2. Edit <code>klauba.py</code> and comment line #12  out (<code>detector.terminate()</code>) (<strong>On the Raspberry pis, this line NEEDS to run. It should not be commented out on the Raspberry PIs</strong>)
+3. Restart your machine</p>
+<h1 id="code-explanation">Code Explanation</h1>
+<p><strong>All paths in the following explanation will treat the repository as the root directory</strong></p>
+<p><code>/snowboy-decode.c</code>: This is the main script. It calls all python "helper" scripts and also make the call to the pocketshpinx library to decode the data. It runs infinitely until the user kills the script with a process signal. <strong>You can change the lexical model (pronunciation) dictionary and language model passed to Klauba in this code at lines #21 and #22, respectively.</strong></p>
+<p><code>/klauba.py</code>: This is the hotword detection script. It uses the Snowboy python wrapper. If it detects the "Klauba" hotword, it calls the <code>/record.py</code> script</p>
+<p><code>/record.py</code>: This script won't start recording until a break in silence is detected. Once it starts recording, it won't stop recording until a certain amount of configured silence. This idea of continous silence follows the "leaky bucket" design pattern where the water is silence. Silence fills the bucket, while noise empties the bucket. If the bucket overflows, then the recording stops and it will be saved to <code>/inputs/raw_recording.wav</code>. Once this script ends, <code>snowboy-decode.c</code> will call the <strong>pocketsphinx library to decode the recording.</strong></p>
+<p><code>/output/decode-details.log</code>: A log file generated by pocketsphinx decodes the audio into text. If there any errors with your pocketsphinx install or the parameters (such as the models) you pass in, they will be logged here.</p>
+<p><code>/output/log.txt</code>: A timestamped log of the words pocketsphinx decodes. It is generated by the <code>/process-output.py</code> script</p>
+<p><code>/process-output.py</code>: The output of pocketsphinx is passed to this script via a pipe in a bash command (standard input).  The <code>process_speech_input</code> function receives this input as a string. <strong>Modify this function as necessary to handle what you want to do with the user's parsed speech input</strong></p>
+<h1 id="models">Models</h1>
+<p><code>/models/Klauba.pmdl</code>: This is the model that Snowboy uses for detecting the <code>Klauba</code> hotword. The current model can be downloaded/retrained at <a href="https://snowboy.kitt.ai/hotword/43141">this link</a></p>
+<p><code>/models/corpus/corpus-generator.py</code>: This script will autogenerate a corpus (<code>/models/corpus/corpus.txt</code>) for you based on:
+* Template strings (encoded within the script itself) that take in a room numbers
+* A list of general phrases <code>/models/corpus/general-phrases.txt</code> (no room numbers in these phrases)
+* A list of room numbers (that are inserted into the templates) <code>/models/corpus/rooms.txt</code></p>
+<p><code>models/corpus/Corpus_V3</code>: This directory contains the dictionary and language models currently being used by sphinx in the script. </p>
+<h2 id="updating-the-dictionary-and-language-models">Updating the Dictionary and Language Models</h2>
+<p>Once you have a corpus you want to use (<em>see /models/corpus/corpus-generator.py</em>):
+1. Use <a href="http://www.speech.cs.cmu.edu/tools/lmtool-new.html">this website</a> to create a dictionary and language model based on an inputted corpus
+2. Download the <code>{{name}}.lm</code> and <code>{{name}}.dic</code> and save them to a directory. Recommended directory to save the new models to: <code>/models/corpus/Corpus_V{{corpus version number}}. **Be sure to include the corpus.txt in this directory to keep track of what the models were trained with!**
+3. Edit</code>/snowboy-decode.c<code>and update line #21 with the new language model path and line #22 with the new dictionary model path
+4. Don't forget to rebuid the c script. Call</code>make`.</p>
+<h1 id="future-improvements">Future Improvements</h1>
+<p>Currently, the <code>/record.py</code> script cuts off the beginnning of user input (it's not recorded). As a result, sometimes the sphinx doesn't parse the first words of what the user says. For instance, the user will say, "Take me to room 2443" and sphinx wil parse it as "2443" or "ROOM 2443".</p>
+
+  <br>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../deepspeech/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../deepspeech/" class="btn btn-xs btn-link">
+        Deepspeech
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../../vision/character/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../../vision/character/" class="btn btn-xs btn-link">
+        Character Recognition
+      </a>
+    </div>
+    
+  </div>
+
+    <br>
+</div>
+
+<footer class="col-md-12 wm-page-content">
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="">Windmill Dark</a> theme by None (noraj).</p>
+</footer>
+
+</body>
+</html>

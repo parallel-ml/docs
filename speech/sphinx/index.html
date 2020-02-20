@@ -33,6 +33,10 @@
         
         var pageToc = [
           {title: "CMU Sphinx", url: "#_top", children: [
+          ]},
+          {title: "Set-Up (Fast)", url: "#set-up-fast", children: [
+          ]},
+          {title: "Details", url: "#details", children: [
               {title: "Example of Running in Terminal", url: "#example-of-running-in-terminal" },
               {title: "Installation", url: "#installation" },
               {title: "Example of Running with C", url: "#example-of-running-with-c" },
@@ -86,15 +90,33 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
     
 
     <h1 id="cmu-sphinx">CMU Sphinx</h1>
-<p>Authors: Ramyad, Sayuj<br />
+<p>Authors: Ramyad, Sayuj (Updated by Bryce Plunkett; Fall 2019) 
 Date: 7/25/2019</p>
-<p>Fast Setup:</p>
-<pre><code>git clone https://github.com/parallel-ml/sphinxSpeech2Text
-./install.sh
-make
-./decode
+<h1 id="set-up-fast">Set-Up (Fast)</h1>
+<p><strong>Prerequisites:</strong>
+- Python 2.7
+- Numpy
+- Ubuntu-Based OS (Ubuntu, PopOS...)</p>
+<p><strong>Clone and install dependencies:</strong></p>
+<pre><code>$ git clone https://github.com/parallel-ml/sphinxSpeech2Text
+$ cd ./sphinxSpeech2Text
+$ sudo chmod u+x ./install.sh
+$ ./install.sh
 </code></pre>
 
+<p><strong>Before compiling the C code:</strong>
+- You might need to edit line 12 and the <code>arecord</code> command parameters to match your environment (such as changing the recording device)</p>
+<p><strong>Compile</strong>:</p>
+<pre><code>$ make
+</code></pre>
+
+<p><strong>Before you can run the code:</strong>
+- Set the <code>SPEECH_RECOGNITION</code> environment variable to point to the repository. For instance, if you cloned the repository into <code>~</code>, then
+the <code>SPEECH_RECOGNITION</code> environment variable should be set to <code>~/sphinxSpeech2Text</code></p>
+<p><strong>Running the code:</strong></p>
+<p>You now have compiled the code. A demo can be run via
+<code>./decode</code>. It will record your voice for 5 seconds, filter the noise, and try to parse commands from the limited corpus. The output text can be found in the <code>/output</code> folder and the raw and filtered recordings can be found in the <code>/inputs</code> folder.</p>
+<h1 id="details">Details</h1>
 <p>Parallel-ml repo: <a href="https://github.com/parallel-ml/sphinxSpeech2Text">https://github.com/parallel-ml/sphinxSpeech2Text</a></p>
 <p>I used the pocketsphinx to decode the audio files on the raspberry pi’s. I installed it on the raspberry pi by following these instructions: <a href="https://cmusphinx.github.io/wiki/tutorialpocketsphinx/#installation-on-unix-system">link</a></p>
 <p>Then I used the pocketsphinx_continuous command line command. There are multiple options, such as <code>-inmic</code>, which while use the system’s default microphone to detect and live decode the speech. You can also decode files using the <code>-infile</code> flag, then type the directory of the file relative to where you are calling the command from.</p>
