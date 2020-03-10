@@ -1,4 +1,7 @@
-site_name: distributed cloud ML
+site_name: SARAV Documentaion
+site_url: https://parallel-ml.github.io/docs/
+site_description: SARAV
+
 nav:
     - Home: index.md
     - Getting Started:
@@ -17,6 +20,7 @@ nav:
     - Vision System:
         - Character Recognition: vision/character.md
     - Speech Recognition:
+        - Klauba Speech: speech/klauba-speech.md
         - Deepspeech: speech/deepspeech.md
         - Sphinx: speech/sphinx.md
         - Text to Speech: speech/text-to-speech.md
@@ -31,8 +35,14 @@ nav:
     - iRobot:
         - Keyboard Control: irobot/keyboard.md
         - Navigation with Lidar/Voice: irobot/navi_lidar_voice.md
+    - Adhoc Network: adhoc/adhoc.md
     - FPGA: fpga/split-networks.md
     - ASPLOS 2018: asplos2018/real-time.md
+    - Contributing to Docs: contr_docs/contr_docs.md
     - People: people/people.md
-    - Adhoc Network: adhoc/adhoc.md
-theme: readthedocs
+    - Connected Cars:
+        - Verified Communication Problem Statement and Solution: conn-cars/encrypted-communication.md
+        - Verified Communication Implementation: conn-cars/encrypted-communication-implementation.md
+        - Setting Up MQTT-Based Communication Between Pis: conn-cars/mqtt.md
+theme: 'windmill-dark'
+theme_dir: 'mkdocs-windmill-dark/mkdocs_windmill_dark'

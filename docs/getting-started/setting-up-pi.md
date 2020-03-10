@@ -11,7 +11,7 @@ Go to `192.168.1.1` in your browser with username `admin` and password `password
 Raspberry Pis. Under `connected devices` tab, you will be able to see the IP of all connected Raspberry Pis.
 
 **Connect through SSH**  
-```text
+```
 ssh pi@<ip>
 ```
 
