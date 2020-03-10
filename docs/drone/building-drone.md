@@ -16,7 +16,7 @@ To build the drone, we need to gather several hardware components. Please refer 
 
 
 ## Build Guide
-Note : Most instructions can be found in the manual located in the frame box.
+Note: For step-by-step instructions (with pictures), please download the [PDF](build-guide.pdf)
 
 * First assemble the PI + NAVIO. Plug in the HAT into the GPIO pins on the RPI.
 * Solder the bullet connectors onto the motor connections
